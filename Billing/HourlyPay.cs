@@ -8,9 +8,21 @@ namespace Billing
     /// </summary>
     public class HourlyPay : DataChecking, IEmployee
     {
+        /// <summary>
+        /// Имя работника
+        /// </summary>
         private string _name;
+        /// <summary>
+        /// Фамилия работника
+        /// </summary>
         private  string _surname;
+        /// <summary>
+        /// Возраст работника
+        /// </summary>
         private int _age;
+        /// <summary>
+        /// Информация о том как начисляется ЗП
+        /// </summary>
         private PaymentType _paymentType = PaymentType.HourlyPay;
         /// <summary>
         /// ставка НДЛФ в процентах
@@ -25,6 +37,9 @@ namespace Billing
         /// </summary>
         private int _hoursWorked;
 
+        /// <summary>
+        /// Аксессор получения имени
+        /// </summary>
         public string Name
         {
             get
@@ -35,6 +50,9 @@ namespace Billing
             }
         }
 
+        /// <summary>
+        /// Аксессор получения фамилии
+        /// </summary>
         public string Surname
         {
             get
@@ -43,6 +61,9 @@ namespace Billing
             set { _surname = SetChecking(value); }
         }
 
+        /// <summary>
+        /// Аксессорполучения возраста
+        /// </summary>
         public int Age
         {
             get { return _age; }
@@ -53,13 +74,19 @@ namespace Billing
                 _age = value;
             }
         }
-    
+        
+        /// <summary>
+        /// Аксессор для получения информации о типе начисления ЗП
+        /// </summary>
         public PaymentType PaymentType
         {
             get { return _paymentType; }
         }
 
-
+        /// <summary>
+        /// Аксессор получения стоимости часа в рублях.
+        /// По закону не меньше 100 руб/час
+        /// </summary>
         public int HourCost
         {
             get { return _hourCost;}
@@ -73,6 +100,10 @@ namespace Billing
             }
         }
 
+        /// <summary>
+        /// Аксессор получения суммы отработанных часов.
+        /// По закону не больше 300 часов
+        /// </summary>
         public int HoursWorked
         {
             get { return _hoursWorked;}
@@ -86,6 +117,12 @@ namespace Billing
             }
         }
 
+        /// <summary>
+        /// Расчет ЗП с учетом НДЛФ(13%) и вычетов. 
+        /// 400руб - стандартный вычет для резидентов РФ.
+        /// (Сумма_отработанных_часов*стоимость_часа)- 
+        /// </summary>
+        /// <returns>ЗП в рублях расчитанная по формуле с учетом НДЛФ и вычетов</returns>
         public double SalariesEnrollment()
         {return (_hoursWorked *_hourCost) - ((_hoursWorked * _hourCost - 400)*IncomeTax)/100; }
     }

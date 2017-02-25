@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Billing
 {
+    /// <summary>
+    /// Статический класс для проверки правильности ввода имени и фамилии
+    /// </summary>
     public class DataChecking
     {
+        /// <summary>
+        /// Статичский класс проверяющий на содержание в строке
+        /// небуквенных символов
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns>Возвращяет строку с заглавной буквой</returns>
         public static string SetChecking(string val)
         {
             val = val.Trim();

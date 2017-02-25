@@ -1,5 +1,8 @@
 ﻿namespace Billing
 {
+    /// <summary>
+    /// Перечислени месяцов и количество рабочих дней в этих месяцах
+    /// </summary>
     public enum month
     {
         January = 17,

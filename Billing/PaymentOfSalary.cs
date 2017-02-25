@@ -7,13 +7,28 @@ namespace Billing
     /// </summary>
     public class PaymentOfSalary: DataChecking, IEmployee
     {
+        /// <summary>
+        /// Имя работника
+        /// </summary>
         private string _name;
+        /// <summary>
+        /// Фамилия работника
+        /// </summary>
         private string _surname;
+        /// <summary>
+        /// Возраст работника
+        /// </summary>
         private int _age;
-        private PaymentType _paymentType = PaymentType.PaymentOfSalary;
+        /// <summary>
+        /// Информация о том как начисляется ЗП
+        /// </summary>
+        private PaymentType _paymentType = PaymentType.HourlyPay;
+        /// <summary>
+        /// ставка НДЛФ в процентах
+        /// </summary>
         private const int IncomeTax = 13;
         /// <summary>
-        /// Оклад за месяц в рублях
+        /// Размер оклада за месяц
         /// </summary>
         private int _salary;
         /// <summary>
@@ -23,9 +38,12 @@ namespace Billing
         /// <summary>
         /// Количество отработанных дней
         /// </summary>
-        private int _daysWorked; 
+        private int _daysWorked;
 
 
+        /// <summary>
+        /// Аксессор получения имени
+        /// </summary>
         public string Name
         {
             get
@@ -36,6 +54,9 @@ namespace Billing
             }
         }
 
+        /// <summary>
+        /// Аксессор получения фамилии
+        /// </summary>
         public string Surname
         {
             get
@@ -44,6 +65,9 @@ namespace Billing
             set { _surname = SetChecking(value); }
         }
 
+        /// <summary>
+        /// Аксессорполучения возраста
+        /// </summary>
         public int Age
         {
             get { return _age; }
@@ -55,11 +79,17 @@ namespace Billing
             }
         }
 
+        /// <summary>
+        /// Аксессор для получения информации о типе начисления ЗП
+        /// </summary>
         public PaymentType PaymentType
         {
             get { return _paymentType; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int Salary 
         {
             get { return _salary;}
@@ -76,10 +106,7 @@ namespace Billing
         public month WorkingDays
         {
             get { return _workingDays;}
-            set
-            {
-                
-            }
+            set { _workingDays = value; }
             
         }
 
