@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Billing
 {
+    //NOTE: Класс не статический, статический только метод
     /// <summary>
     /// Статический класс для проверки правильности ввода имени и фамилии
     /// </summary>

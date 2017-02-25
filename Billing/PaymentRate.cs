@@ -31,7 +31,8 @@ namespace Billing
             get { return _age; }
             set
             {
-                if (value >= 150 || value < 14)
+                if (value >= 150 || value < 14) //NOTE: Лучше уточнять где произошла ошибка, с помощью сообщения
+                    //ArgumentException(сообщение);
                     throw new ArgumentException();
                 _age = value;
             }
