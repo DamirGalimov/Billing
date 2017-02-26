@@ -10,7 +10,7 @@ namespace Billing
     public interface IEmployee
     {
         /// <summary>
-        /// Имя работника
+        /// Хуй
         /// </summary>
         string Name { get; set; }
         /// <summary>
