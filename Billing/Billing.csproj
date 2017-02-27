@@ -43,11 +43,10 @@
     <Compile Include="DataChecking.cs" />
     <Compile Include="HourlyPay.cs" />
     <Compile Include="IEmployee.cs" />
-    <Compile Include="Month.cs" />
     <Compile Include="PaymentOfSalary.cs" />
-    <Compile Include="PaymentRate.cs" />
     <Compile Include="PaymentType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkingCalendare.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

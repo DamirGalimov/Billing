@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Billing
 {
-
+    /// <summary>
+    /// Интерфейс работника
+    /// </summary>
     public interface IEmployee
     {
         /// <summary>
-        /// Хуй
+        /// Имя работника
         /// </summary>
         string Name { get; set; }
         /// <summary>

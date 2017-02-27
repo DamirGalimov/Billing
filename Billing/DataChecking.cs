@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Billing
 {
-    //NOTE: Класс не статический, статический только метод
     /// <summary>
-    /// Статический класс для проверки правильности ввода имени и фамилии
+    /// Класс для проверки правильности ввода имени и фамилии
     /// </summary>
     public class DataChecking
     {
         /// <summary>
-        /// Статичский класс проверяющий на содержание в строке
+        /// Статичский метод проверяющий на содержание в строке
         /// небуквенных символов
         /// </summary>
         /// <param name="val"></param>
@@ -25,7 +24,10 @@ namespace Billing
             {
                 if (!Char.IsLetter(val[i]))
                 {
-                    throw new ArgumentException("Имя содержит не буквенные символы");
+                    if (val[i] != '-')
+                    {
+                        throw new ArgumentException("Имя содержит не буквенные символы");
+                    }
                 }
             }
 

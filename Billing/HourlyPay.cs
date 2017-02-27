@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using static Billing.DataChecking;
 
 namespace Billing
 {
-    //NOTE: Зачем ты наследуешь ДатаЧекинг ? 
-    //Тебе же нужен только метод из него, почему бы не импортировать класс...
     /// <summary>
     /// Работник получающий зарплату по почасовой оплате
     /// </summary>
-    public class HourlyPay : DataChecking, IEmployee
+    public class HourlyPay : IEmployee
     {
         /// <summary>
         /// Имя работника
@@ -33,11 +32,35 @@ namespace Billing
         /// <summary>
         /// Стоимость часа в рублях
         /// </summary>
-        private int _hourCost;
+        private double _hourCost;
         /// <summary>
         /// сумма отработанных часов
         /// </summary>
         private int _hoursWorked;
+
+
+        /// <summary>
+        /// Базовый конструктор
+        /// </summary>
+        public HourlyPay()
+        { }
+
+        /// <summary>
+        /// Конструктор класса 
+        /// </summary>
+        /// <param name="name">имя работника</param>
+        /// <param name="surname">фамилия работника</param>
+        /// <param name="age">возраст работника</param>
+        /// <param name="hourCost">стоимость часа в рублях на занимаемой должности</param>
+        /// <param name="hoursWorked">сумма отработанных часов работником</param>
+        public HourlyPay(string name, string surname, int age, double hourCost, int hoursWorked)
+        {
+            Name = name;
+            Surname = surname;
+            Age = age;
+            HourCost = hourCost;
+            HoursWorked = hoursWorked;
+        }
 
         /// <summary>
         /// Аксессор получения имени
@@ -72,7 +95,7 @@ namespace Billing
             set
             {
                 if (value >= 150 || value < 14)
-                    throw new ArgumentException();
+                    throw new ArgumentException("Неверно введет возраст, не менее 14, не более 150");
                 _age = value;
             }
         }
@@ -89,14 +112,14 @@ namespace Billing
         /// Аксессор получения стоимости часа в рублях.
         /// По закону не меньше 100 руб/час
         /// </summary>
-        public int HourCost
+        public double HourCost
         {
             get { return _hourCost;}
             set
             {
                 if (value < 100)
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentException("Неверно введена стоимость часа, не меньше 100");
                 }
                 _hourCost = value;
             }
@@ -113,7 +136,7 @@ namespace Billing
             {
                 if (value < 0 || value >300)
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentException("Неверно введена сумма отработанных часов, не меньше 0, не более 300");
                 }
                 _hoursWorked = value;
             }
@@ -122,7 +145,6 @@ namespace Billing
         /// <summary>
         /// Расчет ЗП с учетом НДЛФ(13%) и вычетов. 
         /// 400руб - стандартный вычет для резидентов РФ.
-        /// (Сумма_отработанных_часов*стоимость_часа)- 
         /// </summary>
         /// <returns>ЗП в рублях расчитанная по формуле с учетом НДЛФ и вычетов</returns>
         public double SalariesEnrollment()
