@@ -7,10 +7,10 @@ namespace Billing
     /// <summary>
     /// Работник получающий зарплату по почасовой оплате
     /// </summary>
-    public class HourlyPay : IEmployee
+    public class HourlyPayEmployee : IEmployee
     {
         /// <summary>
-        /// Имя
+        /// Имя работника
         /// </summary>
         private string _name;
         /// <summary>
@@ -42,7 +42,7 @@ namespace Billing
         /// <summary>
         /// Базовый конструктор
         /// </summary>
-        public HourlyPay()
+        public HourlyPayEmployee()
         { }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Billing
         /// <param name="age">возраст работника</param>
         /// <param name="hourCost">стоимость часа в рублях на занимаемой должности</param>
         /// <param name="hoursWorked">сумма отработанных часов работником</param>
-        public HourlyPay(string name, string surname, int age, double hourCost, int hoursWorked)
+        public HourlyPayEmployee(string name, string surname, int age, double hourCost, int hoursWorked)
         {
             Name = name;
             Surname = surname;
@@ -148,7 +148,17 @@ namespace Billing
         /// </summary>
         /// <returns>ЗП в рублях расчитанная по формуле с учетом НДЛФ и вычетов</returns>
         public double SalariesEnrollment()
-        {return (_hoursWorked *_hourCost) - ((_hoursWorked * _hourCost - 400)*IncomeTax)/100; }
+        {
+            return (_hoursWorked *_hourCost) - ((_hoursWorked * _hourCost - 400)*IncomeTax)/100;
+        }
+
+        public double Wages
+        {
+            get
+            {
+                return SalariesEnrollment();
+            }
+        }
     }
         
 }

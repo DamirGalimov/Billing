@@ -28,6 +28,10 @@ namespace Billing
         /// </summary>
         PaymentType PaymentType { get; }
         /// <summary>
+        /// Размер зарплаты
+        /// </summary>
+        double Wages { get; }
+        /// <summary>
         /// Расчет заработной платы работника
         /// </summary>
         /// <returns>Размер заработной платы работника в рублях </returns>

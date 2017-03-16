@@ -7,20 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Billing;
 
 namespace Billing_View
 {
     public partial class MainForm : Form
     {
+        public List<IEmployee> Employee;
+
         public MainForm()
         {
             InitializeComponent();
+            Employee = new List<IEmployee>();
+            iEmployeeBindingSource.DataSource = Employee;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonAddEmpl_Click(object sender, EventArgs e)
         {
-            var window = new AddEmployeeForm();
-            window.Show();
+            var form2 = new EmployeeForm();
+            if (form2.ShowDialog() == DialogResult.OK)
+            {
+                iEmployeeBindingSource.Add(form2.GetEmployee());
+            }
         }
+
+        private void buttonRemoveEmpl_Click(object sender, EventArgs e)
+        {
+            iEmployeeBindingSource.RemoveCurrent();
+        }
+
+ 
     }
 }

@@ -6,7 +6,7 @@ namespace Billing
     /// <summary>
     /// Работник получающий ЗП по окладу
     /// </summary>
-    public class PaymentOfSalary: IEmployee
+    public class SalaryPayEmployee: IEmployee
     {
         /// <summary>
         /// Имя работника
@@ -44,7 +44,7 @@ namespace Billing
         /// <summary>
         /// Базовый конструктор
         /// </summary>
-        public PaymentOfSalary()
+        public SalaryPayEmployee()
             { }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Billing
         /// <param name="salary">размер оклада на занимаемой должности</param>
         /// <param name="rate">ставка работника</param>
         /// <param name="daysWorked">количество отработанных дней работником</param>
-        public PaymentOfSalary(string name, string surname, int age, double salary, int daysWorked, double rate)
+        public SalaryPayEmployee(string name, string surname, int age, double salary, int daysWorked, double rate)
         {
             Name = name;
             Surname = surname;
@@ -179,6 +179,14 @@ namespace Billing
         {
             return Math.Round((((_salary) - ((_salary - 400) * IncomeTax) / 100) * _daysWorked  * _rate) / 
                 WorkingCalendare.WorkingDaysInMonth[(DateTime.Now.Month-1)]); 
+        }
+
+        public double Wages
+        {
+            get
+            {
+                return SalariesEnrollment();
+            }
         }
     }
 }
