@@ -58,21 +58,21 @@
             this.textBoxSurname.Location = new System.Drawing.Point(206, 112);
             this.textBoxSurname.Name = "textBoxSurname";
             this.textBoxSurname.Size = new System.Drawing.Size(146, 20);
-            this.textBoxSurname.TabIndex = 1;
+            this.textBoxSurname.TabIndex = 4;
             // 
             // textBoxName
             // 
             this.textBoxName.Location = new System.Drawing.Point(206, 82);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(146, 20);
-            this.textBoxName.TabIndex = 2;
+            this.textBoxName.TabIndex = 3;
             // 
             // textBoxAge
             // 
             this.textBoxAge.Location = new System.Drawing.Point(206, 141);
             this.textBoxAge.Name = "textBoxAge";
             this.textBoxAge.Size = new System.Drawing.Size(146, 20);
-            this.textBoxAge.TabIndex = 3;
+            this.textBoxAge.TabIndex = 5;
             // 
             // labelName
             // 
@@ -107,7 +107,7 @@
             this.radioButtonSalaryPayEmployee.Location = new System.Drawing.Point(6, 19);
             this.radioButtonSalaryPayEmployee.Name = "radioButtonSalaryPayEmployee";
             this.radioButtonSalaryPayEmployee.Size = new System.Drawing.Size(236, 17);
-            this.radioButtonSalaryPayEmployee.TabIndex = 7;
+            this.radioButtonSalaryPayEmployee.TabIndex = 1;
             this.radioButtonSalaryPayEmployee.Text = "Начисление заработной платы по оклада";
             this.radioButtonSalaryPayEmployee.UseVisualStyleBackColor = true;
             this.radioButtonSalaryPayEmployee.CheckedChanged += new System.EventHandler(this.radioButtonSalaryPayEmployee_CheckedChanged);
@@ -118,7 +118,7 @@
             this.radioButtonHourlyPayEmployee.Location = new System.Drawing.Point(6, 42);
             this.radioButtonHourlyPayEmployee.Name = "radioButtonHourlyPayEmployee";
             this.radioButtonHourlyPayEmployee.Size = new System.Drawing.Size(118, 17);
-            this.radioButtonHourlyPayEmployee.TabIndex = 8;
+            this.radioButtonHourlyPayEmployee.TabIndex = 2;
             this.radioButtonHourlyPayEmployee.Text = "Почасовая оплата";
             this.radioButtonHourlyPayEmployee.UseVisualStyleBackColor = true;
             this.radioButtonHourlyPayEmployee.CheckedChanged += new System.EventHandler(this.radioButtonHourlyPayEmployee_CheckedChanged);
@@ -128,14 +128,14 @@
             this.textBoxSalary.Location = new System.Drawing.Point(552, 75);
             this.textBoxSalary.Name = "textBoxSalary";
             this.textBoxSalary.Size = new System.Drawing.Size(55, 20);
-            this.textBoxSalary.TabIndex = 9;
+            this.textBoxSalary.TabIndex = 6;
             // 
             // textBoxDaysWorked
             // 
             this.textBoxDaysWorked.Location = new System.Drawing.Point(552, 102);
             this.textBoxDaysWorked.Name = "textBoxDaysWorked";
             this.textBoxDaysWorked.Size = new System.Drawing.Size(55, 20);
-            this.textBoxDaysWorked.TabIndex = 10;
+            this.textBoxDaysWorked.TabIndex = 7;
             // 
             // labelSalary
             // 
@@ -169,21 +169,21 @@
             this.textBoxRate.Location = new System.Drawing.Point(552, 134);
             this.textBoxRate.Name = "textBoxRate";
             this.textBoxRate.Size = new System.Drawing.Size(55, 20);
-            this.textBoxRate.TabIndex = 14;
+            this.textBoxRate.TabIndex = 8;
             // 
             // textBoxHourCost
             // 
             this.textBoxHourCost.Location = new System.Drawing.Point(552, 162);
             this.textBoxHourCost.Name = "textBoxHourCost";
             this.textBoxHourCost.Size = new System.Drawing.Size(55, 20);
-            this.textBoxHourCost.TabIndex = 15;
+            this.textBoxHourCost.TabIndex = 9;
             // 
             // textBoxHoursWorked
             // 
             this.textBoxHoursWorked.Location = new System.Drawing.Point(552, 188);
             this.textBoxHoursWorked.Name = "textBoxHoursWorked";
             this.textBoxHoursWorked.Size = new System.Drawing.Size(55, 20);
-            this.textBoxHoursWorked.TabIndex = 16;
+            this.textBoxHoursWorked.TabIndex = 10;
             // 
             // labelHourCost
             // 
@@ -205,20 +205,22 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(454, 224);
+            this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAdd.Location = new System.Drawing.Point(453, 224);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
-            this.buttonAdd.TabIndex = 19;
+            this.buttonAdd.TabIndex = 11;
             this.buttonAdd.Text = "OK";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(535, 224);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(534, 224);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 20;
+            this.button1.TabIndex = 12;
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -238,7 +240,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 259);
+            this.ClientSize = new System.Drawing.Size(621, 259);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonAdd);

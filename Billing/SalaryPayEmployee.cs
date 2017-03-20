@@ -6,6 +6,7 @@ namespace Billing
     /// <summary>
     /// Работник получающий ЗП по окладу
     /// </summary>
+    [Serializable]
     public class SalaryPayEmployee: IEmployee
     {
         /// <summary>
@@ -181,6 +182,9 @@ namespace Billing
                 WorkingCalendare.WorkingDaysInMonth[(DateTime.Now.Month-1)]); 
         }
 
+        /// <summary>
+        /// Получение размера ЗП
+        /// </summary>
         public double Wages
         {
             get

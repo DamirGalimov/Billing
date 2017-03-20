@@ -7,6 +7,7 @@ namespace Billing
     /// <summary>
     /// Работник получающий зарплату по почасовой оплате
     /// </summary>
+    [Serializable]
     public class HourlyPayEmployee : IEmployee
     {
         /// <summary>
@@ -152,6 +153,9 @@ namespace Billing
             return (_hoursWorked *_hourCost) - ((_hoursWorked * _hourCost - 400)*IncomeTax)/100;
         }
 
+        /// <summary>
+        /// Получение размера ЗП
+        /// </summary>
         public double Wages
         {
             get
