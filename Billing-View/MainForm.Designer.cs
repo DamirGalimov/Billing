@@ -48,12 +48,13 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifyEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifyEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.billingGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iEmployeeBindingSource)).BeginInit();
@@ -89,6 +90,8 @@
             this.billingGridView.DataSource = this.iEmployeeBindingSource;
             this.billingGridView.Location = new System.Drawing.Point(6, 19);
             this.billingGridView.Name = "billingGridView";
+            this.billingGridView.ReadOnly = true;
+            this.billingGridView.RowHeadersVisible = false;
             this.billingGridView.Size = new System.Drawing.Size(516, 150);
             this.billingGridView.TabIndex = 0;
             // 
@@ -97,6 +100,7 @@
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 76;
             // 
             // surnameDataGridViewTextBoxColumn
@@ -104,6 +108,7 @@
             this.surnameDataGridViewTextBoxColumn.DataPropertyName = "Surname";
             this.surnameDataGridViewTextBoxColumn.HeaderText = "Surname";
             this.surnameDataGridViewTextBoxColumn.Name = "surnameDataGridViewTextBoxColumn";
+            this.surnameDataGridViewTextBoxColumn.ReadOnly = true;
             this.surnameDataGridViewTextBoxColumn.Width = 75;
             // 
             // ageDataGridViewTextBoxColumn
@@ -111,6 +116,7 @@
             this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
             this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
             this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            this.ageDataGridViewTextBoxColumn.ReadOnly = true;
             this.ageDataGridViewTextBoxColumn.Width = 76;
             // 
             // paymentTypeDataGridViewTextBoxColumn
@@ -205,7 +211,8 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.closeFileToolStripMenuItem});
+            this.closeFileToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -231,6 +238,13 @@
             this.closeFileToolStripMenuItem.Text = "Close file";
             this.closeFileToolStripMenuItem.Click += new System.EventHandler(this.closeFileToolStripMenuItem_Click);
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -255,6 +269,13 @@
             this.removeEmployeeToolStripMenuItem.Text = "Remove employee";
             this.removeEmployeeToolStripMenuItem.Click += new System.EventHandler(this.removeEmployeeToolStripMenuItem_Click);
             // 
+            // modifyEmployeeToolStripMenuItem
+            // 
+            this.modifyEmployeeToolStripMenuItem.Name = "modifyEmployeeToolStripMenuItem";
+            this.modifyEmployeeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.modifyEmployeeToolStripMenuItem.Text = "Modify employee";
+            this.modifyEmployeeToolStripMenuItem.Click += new System.EventHandler(this.modifyEmployeeToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
@@ -266,13 +287,6 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
-            // 
-            // modifyEmployeeToolStripMenuItem
-            // 
-            this.modifyEmployeeToolStripMenuItem.Name = "modifyEmployeeToolStripMenuItem";
-            this.modifyEmployeeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.modifyEmployeeToolStripMenuItem.Text = "Modify employee";
-            this.modifyEmployeeToolStripMenuItem.Click += new System.EventHandler(this.modifyEmployeeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -327,6 +341,7 @@
         private System.Windows.Forms.ToolStripMenuItem removeEmployeeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifyEmployeeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

@@ -13,12 +13,13 @@ namespace Billing_View
 {
     public partial class EmployeeForm : Form
     {
-        private IEmployee getEmployee;
-
+        /// <summary>
+        /// Создание или изменение работника
+        /// </summary>
         public IEmployee Employee
         {
-           
-                get
+
+            get
             {
                 if (radioButtonHourlyPayEmployee.Checked)
                 {
@@ -159,6 +160,20 @@ namespace Billing_View
         /// <param name="e"></param>
         private void buttonOK_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var employee = Employee;
+            }
+            catch (FormatException fe)
+            {
+                MessageBox.Show(fe.Message, "Предупреждение",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            catch (ArgumentException fe)
+            {
+                MessageBox.Show(fe.Message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             this.DialogResult = DialogResult.OK;
             Close();
         }
