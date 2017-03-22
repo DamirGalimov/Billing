@@ -13,6 +13,66 @@ namespace Billing_View
 {
     public partial class EmployeeForm : Form
     {
+        private IEmployee getEmployee;
+
+        public IEmployee Employee
+        {
+           
+                get
+            {
+                if (radioButtonHourlyPayEmployee.Checked)
+                {
+                    var emplHourlyPay = new HourlyPayEmployee();
+                    emplHourlyPay.Name = textBoxName.Text;
+                    emplHourlyPay.Surname = textBoxSurname.Text;
+                    emplHourlyPay.Age = Convert.ToInt32(textBoxAge.Text);
+                    emplHourlyPay.HourCost = Convert.ToDouble(textBoxHourCost.Text);
+                    emplHourlyPay.HoursWorked = Convert.ToInt32(textBoxHoursWorked.Text);
+                    return emplHourlyPay;
+                }
+                else
+                {
+                    var emplPaymentOfSalary = new SalaryPayEmployee();
+                    emplPaymentOfSalary.Name = textBoxName.Text;
+                    emplPaymentOfSalary.Surname = textBoxSurname.Text;
+                    emplPaymentOfSalary.Age = Convert.ToInt32(textBoxAge.Text);
+                    emplPaymentOfSalary.DaysWorked = Convert.ToInt32(textBoxDaysWorked.Text);
+                    emplPaymentOfSalary.Rate = Convert.ToDouble(textBoxRate.Text);
+                    emplPaymentOfSalary.Salary = Convert.ToDouble(textBoxSalary.Text);
+                    return emplPaymentOfSalary;
+                }
+            }
+
+            set
+            {
+                if (value is HourlyPayEmployee)
+                {
+                    radioButtonHourlyPayEmployee.Checked = true;
+                    var empl = new HourlyPayEmployee();
+                    empl = (HourlyPayEmployee)value;
+                    textBoxName.Text = empl.Name;
+                    textBoxSurname.Text = empl.Surname;
+                    textBoxAge.Text = Convert.ToString(empl.Age);
+                    textBoxHoursWorked.Text = Convert.ToString(empl.HoursWorked);
+                    textBoxHourCost.Text = Convert.ToString(empl.HourCost);
+                }
+
+                if (value is SalaryPayEmployee)
+                {
+                    radioButtonSalaryPayEmployee.Checked = true;
+                    var empl = new SalaryPayEmployee();
+                    empl = (SalaryPayEmployee) value;
+                    textBoxName.Text = empl.Name;
+                    textBoxSurname.Text = empl.Surname;
+                    textBoxAge.Text = Convert.ToString(empl.Age);
+                    textBoxDaysWorked.Text = Convert.ToString(empl.DaysWorked);
+                    textBoxRate.Text = Convert.ToString(empl.Rate);
+                    textBoxSalary.Text = Convert.ToString(empl.Salary);
+
+                }
+            }
+        }
+
         public EmployeeForm()
         {
             InitializeComponent();
@@ -103,34 +163,7 @@ namespace Billing_View
             Close();
         }
 
-        /// <summary>
-        /// Метод получения работника
-        /// </summary>
-        /// <returns> возвращает работника</returns>
-        public IEmployee GetEmployee()
-        {
-            if (radioButtonHourlyPayEmployee.Checked)
-            {
-                var emplHourlyPay = new HourlyPayEmployee();
-                emplHourlyPay.Name = textBoxName.Text;
-                emplHourlyPay.Surname = textBoxSurname.Text;
-                emplHourlyPay.Age = Convert.ToInt32(textBoxAge.Text);
-                emplHourlyPay.HourCost = Convert.ToDouble(textBoxHourCost.Text);
-                emplHourlyPay.HoursWorked = Convert.ToInt32(textBoxHoursWorked.Text);
-                return emplHourlyPay;
-            }
-            else
-            {
-                var emplPaymentOfSalary = new SalaryPayEmployee();
-                emplPaymentOfSalary.Name = textBoxName.Text;
-                emplPaymentOfSalary.Surname = textBoxSurname.Text;
-                emplPaymentOfSalary.Age = Convert.ToInt32(textBoxAge.Text);
-                emplPaymentOfSalary.DaysWorked = Convert.ToInt32(textBoxDaysWorked.Text);
-                emplPaymentOfSalary.Rate = Convert.ToDouble(textBoxRate.Text);
-                emplPaymentOfSalary.Salary = Convert.ToDouble(textBoxSalary.Text);
-                return emplPaymentOfSalary;
-            }
-        }
+        
 
         /// <summary>
         /// Кнопка отмены

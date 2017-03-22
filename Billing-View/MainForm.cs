@@ -23,6 +23,11 @@ namespace Billing_View
             InitializeComponent();
             Employee = new List<IEmployee>();
             iEmployeeBindingSource.DataSource = Employee;
+#if !DEBUG
+            OpenTestButton.Visible = false;
+            AutoCreatebutton.Visible = false;
+            SaveTestButton.Visible = false;
+#endif
         }
 
 
@@ -36,7 +41,7 @@ namespace Billing_View
             var addForm = new EmployeeForm();
             if (addForm.ShowDialog() == DialogResult.OK)
             {
-                iEmployeeBindingSource.Add(addForm.GetEmployee());
+                iEmployeeBindingSource.Add(addForm.Employee);
             }
         }
 
@@ -50,16 +55,18 @@ namespace Billing_View
             iEmployeeBindingSource.RemoveCurrent();
         }
 
+
         /// <summary>
-        /// Кнопка для тестового сохранения
+        /// Тестовая кнопка открыть
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SaveTestButton_Click(object sender, EventArgs e)
+        private void OpenTestButton_Click(object sender, EventArgs e)
         {
-            using (FileStream fs = new FileStream("Test2.txt", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("Test.txt", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, Employee);
+                List<IEmployee> empltest = (List<IEmployee>) formatter.Deserialize(fs);
+                iEmployeeBindingSource.DataSource = empltest;
             }
         }
 
@@ -75,16 +82,15 @@ namespace Billing_View
         }
 
         /// <summary>
-        /// Тестовая кнопка открыть
+        /// Кнопка для тестового сохранения
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OpenTestButton_Click(object sender, EventArgs e)
+        private void SaveTestButton_Click(object sender, EventArgs e)
         {
-            using (FileStream fs = new FileStream("Test.txt", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("Test2.txt", FileMode.OpenOrCreate))
             {
-                List<IEmployee> empltest = (List<IEmployee>) formatter.Deserialize(fs);
-                iEmployeeBindingSource.DataSource = empltest;
+                formatter.Serialize(fs, Employee);
             }
         }
 
@@ -165,7 +171,7 @@ namespace Billing_View
             var addForm = new EmployeeForm();
             if (addForm.ShowDialog() == DialogResult.OK)
             {
-                iEmployeeBindingSource.Add(addForm.GetEmployee());
+                iEmployeeBindingSource.Add(addForm.Employee);
             }
         }
 
@@ -205,6 +211,17 @@ namespace Billing_View
                 }
             }
 
+        }
+
+        private void modifyEmployeeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new EmployeeForm();
+            int index = iEmployeeBindingSource.IndexOf(iEmployeeBindingSource.Current);
+            form.Employee = (IEmployee)iEmployeeBindingSource.Current;
+            form.ShowDialog();
+            var empl = form.Employee;
+            Employee.RemoveAt(index);
+            iEmployeeBindingSource.Insert(index, empl);
         }
     }
 }
