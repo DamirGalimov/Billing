@@ -14,6 +14,32 @@ namespace Billing_View
     public partial class EmployeeForm : Form
     {
         /// <summary>
+        /// Конструктор. Активность и неактивность кнопок
+        /// </summary>
+        public EmployeeForm()
+        {
+            InitializeComponent();
+            textBoxName.Enabled = false;
+            textBoxSurname.Enabled = false;
+            textBoxAge.Enabled = false;
+            textBoxDaysWorked.Enabled = false;
+            textBoxHourCost.Enabled = false;
+            textBoxHoursWorked.Enabled = false;
+            textBoxRate.Enabled = false;
+            textBoxSalary.Enabled = false;
+
+            labelName.Enabled = false;
+            labelSurname.Enabled = false;
+            labelAge.Enabled = false;
+
+            labelDaysWorked.Enabled = false;
+            labelRate.Enabled = false;
+            labelSalary.Enabled = false;
+            labelHourCost.Enabled = false;
+            labelHoursWorked.Enabled = false;
+        }
+
+        /// <summary>
         /// Создание или изменение работника
         /// </summary>
         public IEmployee Employee
@@ -23,24 +49,26 @@ namespace Billing_View
             {
                 if (radioButtonHourlyPayEmployee.Checked)
                 {
-                    var emplHourlyPay = new HourlyPayEmployee();
-                    emplHourlyPay.Name = textBoxName.Text;
-                    emplHourlyPay.Surname = textBoxSurname.Text;
-                    emplHourlyPay.Age = Convert.ToInt32(textBoxAge.Text);
-                    emplHourlyPay.HourCost = Convert.ToDouble(textBoxHourCost.Text);
-                    emplHourlyPay.HoursWorked = Convert.ToInt32(textBoxHoursWorked.Text);
-                    return emplHourlyPay;
+                    return new HourlyPayEmployee
+                    {
+                        Name = textBoxName.Text,
+                        Surname = textBoxSurname.Text,
+                        Age = Convert.ToInt32(textBoxAge.Text),
+                        HourCost = Convert.ToDouble(textBoxHourCost.Text),
+                        HoursWorked = Convert.ToInt32(textBoxHoursWorked.Text)
+                    }; 
                 }
                 else
                 {
-                    var emplPaymentOfSalary = new SalaryPayEmployee();
-                    emplPaymentOfSalary.Name = textBoxName.Text;
-                    emplPaymentOfSalary.Surname = textBoxSurname.Text;
-                    emplPaymentOfSalary.Age = Convert.ToInt32(textBoxAge.Text);
-                    emplPaymentOfSalary.DaysWorked = Convert.ToInt32(textBoxDaysWorked.Text);
-                    emplPaymentOfSalary.Rate = Convert.ToDouble(textBoxRate.Text);
-                    emplPaymentOfSalary.Salary = Convert.ToDouble(textBoxSalary.Text);
-                    return emplPaymentOfSalary;
+                    return new SalaryPayEmployee
+                    {
+                        Name = textBoxName.Text,
+                        Surname = textBoxSurname.Text,
+                        Age = Convert.ToInt32(textBoxAge.Text),
+                        DaysWorked = Convert.ToInt32(textBoxDaysWorked.Text),
+                        Rate = Convert.ToDouble(textBoxRate.Text),
+                        Salary = Convert.ToDouble(textBoxSalary.Text)
+                    }; 
                 }
             }
 
@@ -74,28 +102,6 @@ namespace Billing_View
             }
         }
 
-        public EmployeeForm()
-        {
-            InitializeComponent();
-            textBoxName.Enabled = false;
-            textBoxSurname.Enabled = false;
-            textBoxAge.Enabled = false;
-            textBoxDaysWorked.Enabled = false;
-            textBoxHourCost.Enabled = false;
-            textBoxHoursWorked.Enabled = false;
-            textBoxRate.Enabled = false;
-            textBoxSalary.Enabled = false;
-
-            labelName.Enabled = false;
-            labelSurname.Enabled = false;
-            labelAge.Enabled = false;
-
-            labelDaysWorked.Enabled = false;
-            labelRate.Enabled = false;
-            labelSalary.Enabled = false;
-            labelHourCost.Enabled = false;
-            labelHoursWorked.Enabled = false;
-        }
 
         /// <summary>
         /// Кнопка выбора работника с почасовой оплатой
@@ -107,22 +113,27 @@ namespace Billing_View
             textBoxName.Enabled = true;
             textBoxSurname.Enabled = true;
             textBoxAge.Enabled = true;
-            textBoxDaysWorked.Enabled = false;
             textBoxHourCost.Enabled = true;
             textBoxHoursWorked.Enabled = true;
-            textBoxRate.Enabled = false;
-            textBoxSalary.Enabled = false;
+            textBoxRate.Visible = false;
+            textBoxSalary.Visible = false;
+            textBoxDaysWorked.Visible = false;
+
 
             labelName.Enabled = true;
             labelSurname.Enabled = true;
             labelAge.Enabled = true;
 
+
             labelHoursWorked.Enabled = true;
             labelHourCost.Enabled = true;
 
-            labelDaysWorked.Enabled = false;
-            labelRate.Enabled = false;
-            labelSalary.Enabled = false;
+
+            labelDaysWorked.Visible = false;
+            labelRate.Visible = false;
+            labelSalary.Visible = false;
+
+
         }
 
         /// <summary>
@@ -136,10 +147,10 @@ namespace Billing_View
             textBoxSurname.Enabled = true;
             textBoxAge.Enabled = true;
             textBoxDaysWorked.Enabled = true;
-            textBoxHourCost.Enabled = false;
-            textBoxHoursWorked.Enabled = false;
             textBoxRate.Enabled = true;
             textBoxSalary.Enabled = true;
+            textBoxHourCost.Visible = false;
+            textBoxHoursWorked.Visible = false;
 
             labelName.Enabled = true;
             labelSurname.Enabled = true;
@@ -149,8 +160,8 @@ namespace Billing_View
             labelRate.Enabled = true;
             labelSalary.Enabled = true;
 
-            labelHourCost.Enabled = false;
-            labelHoursWorked.Enabled = false;
+            labelHourCost.Visible = false;
+            labelHoursWorked.Visible = false;
         }
 
         /// <summary>
@@ -177,8 +188,6 @@ namespace Billing_View
             this.DialogResult = DialogResult.OK;
             Close();
         }
-
-        
 
         /// <summary>
         /// Кнопка отмены

@@ -15,27 +15,22 @@ namespace Billing
         /// <summary>
         /// Имя работника
         /// </summary>
-        [XmlElement("Name")]
         string Name { get; set; }
         /// <summary>
         /// Фамилия работника
         /// </summary>
-        [XmlElement("Surname")]
         string Surname { get; set; }
         /// <summary>
         /// Возраст работника
         /// </summary>
-        [XmlElement("Age")]
         int Age { get; set; }
         /// <summary>
         /// Информация о способе начисления ЗП
         /// </summary>
-        [XmlElement("PaymenType")]
         PaymentType PaymentType { get; }
         /// <summary>
         /// Размер зарплаты
         /// </summary>
-        [XmlElement("Wages")]
         double Wages { get; }
         /// <summary>
         /// Расчет заработной платы работника

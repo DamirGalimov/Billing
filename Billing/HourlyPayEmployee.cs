@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using static Billing.DataChecking;
 
+
 namespace Billing
 {
     /// <summary>
@@ -106,7 +107,10 @@ namespace Billing
         /// </summary>
         public PaymentType PaymentType
         {
-            get { return _paymentType; }
+            get
+            {
+                return _paymentType;
+            }
         }
 
         /// <summary>

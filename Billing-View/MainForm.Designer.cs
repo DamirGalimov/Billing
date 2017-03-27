@@ -55,6 +55,7 @@
             this.modifyEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.billingGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iEmployeeBindingSource)).BeginInit();
@@ -141,7 +142,7 @@
             // OpenTestButton
             // 
             this.OpenTestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.OpenTestButton.Location = new System.Drawing.Point(332, 204);
+            this.OpenTestButton.Location = new System.Drawing.Point(305, 204);
             this.OpenTestButton.Name = "OpenTestButton";
             this.OpenTestButton.Size = new System.Drawing.Size(66, 23);
             this.OpenTestButton.TabIndex = 6;
@@ -152,7 +153,7 @@
             // AutoCreatebutton
             // 
             this.AutoCreatebutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AutoCreatebutton.Location = new System.Drawing.Point(413, 204);
+            this.AutoCreatebutton.Location = new System.Drawing.Point(377, 204);
             this.AutoCreatebutton.Name = "AutoCreatebutton";
             this.AutoCreatebutton.Size = new System.Drawing.Size(103, 23);
             this.AutoCreatebutton.TabIndex = 5;
@@ -163,7 +164,7 @@
             // SaveTestButton
             // 
             this.SaveTestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SaveTestButton.Location = new System.Drawing.Point(251, 204);
+            this.SaveTestButton.Location = new System.Drawing.Point(233, 204);
             this.SaveTestButton.Name = "SaveTestButton";
             this.SaveTestButton.Size = new System.Drawing.Size(66, 23);
             this.SaveTestButton.TabIndex = 4;
@@ -174,7 +175,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(123, 204);
+            this.button2.Location = new System.Drawing.Point(114, 204);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(113, 23);
             this.button2.TabIndex = 3;
@@ -220,28 +221,28 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // closeFileToolStripMenuItem
             // 
             this.closeFileToolStripMenuItem.Name = "closeFileToolStripMenuItem";
-            this.closeFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.closeFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeFileToolStripMenuItem.Text = "Close file";
             this.closeFileToolStripMenuItem.Click += new System.EventHandler(this.closeFileToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -250,7 +251,8 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addEmployeeToolStripMenuItem,
             this.removeEmployeeToolStripMenuItem,
-            this.modifyEmployeeToolStripMenuItem});
+            this.modifyEmployeeToolStripMenuItem,
+            this.searchToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -287,6 +289,13 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.searchToolStripMenuItem.Text = "Search";
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -342,6 +351,7 @@
         private System.Windows.Forms.ToolStripMenuItem closeFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifyEmployeeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
     }
 }
 

@@ -10,13 +10,15 @@ using System.Windows.Forms;
 using System.Runtime.Serialization.Formatters.Binary;
 using Billing;
 using System.IO;
+using System.Linq.Expressions;
+using System.Runtime.Serialization;
 
 namespace Billing_View
 {
     public partial class MainForm : Form
     {
-        public List<IEmployee> Employee;
-        BinaryFormatter formatter = new BinaryFormatter();
+        private List<IEmployee> Employee;
+        
 
         public MainForm()
         {
@@ -52,7 +54,14 @@ namespace Billing_View
         /// <param name="e"></param>
         private void buttonRemoveEmpl_Click(object sender, EventArgs e)
         {
-            iEmployeeBindingSource.RemoveCurrent();
+            if (Employee.Count != 0)
+            {
+                iEmployeeBindingSource.RemoveCurrent();
+            }
+            else
+            {
+                MessageBox.Show("Ошибка. Файл не может быть пустым");
+            }
         }
 
         /// <summary>
@@ -64,20 +73,21 @@ namespace Billing_View
         {
             using (FileStream fs = new FileStream("Test.txt", FileMode.OpenOrCreate))
             {
+                BinaryFormatter formatter = new BinaryFormatter();
                 List<IEmployee> empltest = (List<IEmployee>)formatter.Deserialize(fs);
                 iEmployeeBindingSource.DataSource = empltest;
             }
         }
 
         /// <summary>
-        /// Создание объектов по нажатии кнопки
+        /// Создание объектов по нажатию кнопки
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void AutoCreatebutton_Click(object sender, EventArgs e)
         {
             iEmployeeBindingSource.Add(new SalaryPayEmployee("Artur", "Kun", 20, 30000, 20, 1));
-            iEmployeeBindingSource.Add(new HourlyPayEmployee("Artur", "Viderhspan", 20, 120, 130));
+            iEmployeeBindingSource.Add(new HourlyPayEmployee("Ivan", "Viderhspan", 20, 120, 130));
         }
 
         /// <summary>
@@ -89,6 +99,7 @@ namespace Billing_View
         {
             using (FileStream fs = new FileStream("Test2.txt", FileMode.OpenOrCreate))
             {
+                BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(fs, Employee);
             }
         }
@@ -103,8 +114,15 @@ namespace Billing_View
             OpenFileDialog ofd = new OpenFileDialog();
             if (!(ofd.FileName == null || ofd.ShowDialog() == DialogResult.Cancel))
             {
-                Employee = Serialization.Deserialize(ofd.FileName);
-                iEmployeeBindingSource.DataSource = Employee;
+                try
+                {
+                    Employee = Serialization.Deserialize(ofd.FileName);
+                    iEmployeeBindingSource.DataSource = Employee;
+                }
+                catch (SerializationException)
+                {
+                    MessageBox.Show("Error ");
+                }
             }
 
         }
@@ -128,7 +146,7 @@ namespace Billing_View
             }
             else
             {
-                MessageBox.Show("Ошибка. Файл не може быть пустым");
+                MessageBox.Show("Ошибка. Файл не может быть пустым");
             }
         }
 
@@ -177,7 +195,14 @@ namespace Billing_View
         /// <param name="e"></param>
         private void removeEmployeeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            iEmployeeBindingSource.RemoveCurrent();
+            if (iEmployeeBindingSource.DataSource != null)
+            {
+                iEmployeeBindingSource.RemoveCurrent();
+            }
+            else
+            {
+                MessageBox.Show("Ошибка. Файл не может быть пустым");
+            }
         }
 
         /// <summary>
@@ -226,6 +251,11 @@ namespace Billing_View
             iEmployeeBindingSource.Insert(index, empl);
         }
 
+        /// <summary>
+        /// Закрытие через меню
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Employee.Count != 0)
@@ -244,6 +274,17 @@ namespace Billing_View
                 }
             }
             Close();
+        }
+
+        /// <summary>
+        /// Поиск работника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formSeacrh = new SearchForm(Employee);
+            formSeacrh.ShowDialog();
         }
     }
 }

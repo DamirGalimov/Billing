@@ -14,7 +14,7 @@ namespace Billing
     /// <summary>
     /// Класс для конвертации типа оплаты из строки в перечисление и наоборот
     /// </summary>
-    public class ConvertPaymentType
+    public  static class ConvertPaymentType
     {
         /// <summary>
         /// Метод для конвертации перечисления в строку
@@ -23,9 +23,9 @@ namespace Billing
         {
             switch (str)
             {
-                case "Почасовая":
+                case "By hour":
                     return PaymentType.HourlyPay;
-                case "По окладу":
+                case "By salary":
                     return PaymentType.PaymentOfSalary;
                 default:
                     throw new ArgumentException("Неверно указан тип начислния ЗП");
@@ -33,16 +33,16 @@ namespace Billing
         }
 
         /// <summary>
-        /// Метод для конвертации строку в перечисление
+        /// Метод для конвертации перечисления в строку
         /// </summary>
         public static string ToStringPayment(PaymentType p)
         {
             switch (p)
             {
                 case PaymentType.HourlyPay:
-                    return "Почасовая";
+                    return "By hour";
                 case PaymentType.PaymentOfSalary:
-                    return "По окладу";
+                    return "By salary";
                 default:
                     throw new ArgumentException("Неверно указан тип начислния ЗП");
             }
