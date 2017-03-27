@@ -160,9 +160,9 @@
             this.labelRate.AutoSize = true;
             this.labelRate.Location = new System.Drawing.Point(11, 219);
             this.labelRate.Name = "labelRate";
-            this.labelRate.Size = new System.Drawing.Size(66, 13);
+            this.labelRate.Size = new System.Drawing.Size(72, 13);
             this.labelRate.TabIndex = 13;
-            this.labelRate.Text = "Rate f salary";
+            this.labelRate.Text = "Rate of salary";
             // 
             // textBoxRate
             // 
@@ -206,7 +206,7 @@
             // buttonAdd
             // 
             this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAdd.Location = new System.Drawing.Point(197, 314);
+            this.buttonAdd.Location = new System.Drawing.Point(197, 292);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 11;
@@ -217,7 +217,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(278, 314);
+            this.button1.Location = new System.Drawing.Point(278, 292);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
@@ -240,7 +240,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 349);
+            this.ClientSize = new System.Drawing.Size(365, 327);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonAdd);

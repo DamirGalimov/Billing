@@ -16,6 +16,7 @@ namespace Billing_View
     public partial class SearchForm : Form
     {
         List<IEmployee> SearchList = new List<IEmployee>();
+            
         public SearchForm(List<IEmployee> list)
         {
             InitializeComponent();
@@ -23,25 +24,21 @@ namespace Billing_View
             
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
 
-        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        private void buttonSearch_Click(object sender, EventArgs e)
         {
             string ss = textBoxSearch.Text;
-            string criterion  = Convert.ToString(comboBoxSearch.SelectedItem);
+            string criterion = Convert.ToString(comboBoxSearch.SelectedItem);
             switch (criterion)
             {
                 case "Name":
-                {
+                    {
                         iEmployeeBindingSource.DataSource = SearchList.FindAll(delegate (IEmployee empl)
                         {
                             return empl.Name == ss;
                         });
                         break;
-                }
+                    }
                 case "Surname":
                     iEmployeeBindingSource.DataSource = SearchList.FindAll(delegate (IEmployee empl)
                     {
@@ -49,14 +46,14 @@ namespace Billing_View
                     });
                     break;
                 case "Age":
-                {
+                    {
                         int age = Convert.ToInt32(textBoxSearch.Text);
                         iEmployeeBindingSource.DataSource = SearchList.FindAll(delegate (IEmployee empl)
                         {
                             return empl.Age == age;
                         });
                         break;
-                }
+                    }
                 case "Payment type":
                     {
                         iEmployeeBindingSource.DataSource = SearchList.FindAll(delegate (IEmployee empl)
@@ -67,6 +64,20 @@ namespace Billing_View
                         break;
                     }
             }
+        }
+
+        private void buttonClearSearch_Click(object sender, EventArgs e)
+        {
+            iEmployeeBindingSource.Clear();
+        }
+
+        private void textBoxSearch_MouseHover(object sender, EventArgs e)
+        {
+            if (comboBoxSearch.SelectedItem.ToString() == "Payment type")
+            {
+                toolTip.Show("Enter 'By hour' or 'By salary'", textBoxSearch);
+            }
+           
         }
     }
 }

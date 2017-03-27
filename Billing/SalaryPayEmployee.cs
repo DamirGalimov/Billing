@@ -165,7 +165,7 @@ namespace Billing
             {
                 if (value < 0 || value > 1)
                 {
-                    throw new ArgumentException("Неверно введена ставка");
+                    throw new ArgumentException("Неверно введён размер ставки");
                 }
                 _rate = value;
             }

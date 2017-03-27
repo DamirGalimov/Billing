@@ -70,7 +70,9 @@ namespace Billing
         public string Name
         {
             get
-            {return _name;}
+            {
+                return _name;
+            }
             set
             {
                 _name = SetChecking(value);
@@ -83,9 +85,14 @@ namespace Billing
         public string Surname
         {
             get
-            {return _surname; }
+            {
+                return _surname;
+            }
 
-            set { _surname = SetChecking(value); }
+            set
+            {
+                _surname = SetChecking(value);
+            }
         }
 
         /// <summary>
@@ -97,7 +104,7 @@ namespace Billing
             set
             {
                 if (value >= 150 || value < 14)
-                    throw new ArgumentException("Неверно введет возраст, не менее 14, не более 150");
+                    throw new ArgumentException("Неверно введет возраст, не менее 14, не более 150 лет");
                 _age = value;
             }
         }

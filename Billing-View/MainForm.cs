@@ -32,6 +32,20 @@ namespace Billing_View
 #endif
         }
 
+        /// <summary>
+        /// Метод для создания формы с сохранением
+        /// </summary>
+        /// <param name="empl"></param>
+        private void CreateSaveForm(List<IEmployee> empl)
+        {
+            SaveFileDialog ofd = new SaveFileDialog();
+            ofd.Filter = "txt files (*.dat)|*.dat";
+            ofd.RestoreDirectory = true;
+            if (!(ofd.FileName == null || ofd.ShowDialog() == DialogResult.Cancel))
+            {
+                Serialization.Serialize(ofd.FileName, empl);
+            }
+        }
 
         /// <summary>
         /// Добавление объекта
@@ -54,7 +68,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void buttonRemoveEmpl_Click(object sender, EventArgs e)
         {
-            if (Employee.Count != 0)
+            if (iEmployeeBindingSource.DataSource != null)
             {
                 iEmployeeBindingSource.RemoveCurrent();
             }
@@ -71,7 +85,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void OpenTestButton_Click(object sender, EventArgs e)
         {
-            using (FileStream fs = new FileStream("Test.txt", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("testD.dat", FileMode.OpenOrCreate))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 List<IEmployee> empltest = (List<IEmployee>)formatter.Deserialize(fs);
@@ -97,7 +111,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void SaveTestButton_Click(object sender, EventArgs e)
         {
-            using (FileStream fs = new FileStream("Test2.txt", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("Test.dat", FileMode.OpenOrCreate))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(fs, Employee);
@@ -128,7 +142,7 @@ namespace Billing_View
         }
 
         /// <summary>
-        /// Сохранение
+        /// Сохранение из меню
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -136,13 +150,7 @@ namespace Billing_View
         {
             if (Employee.Count != 0)
             {
-                SaveFileDialog ofd = new SaveFileDialog();
-                ofd.Filter = "txt files (*.dat)|*.dat";
-                ofd.RestoreDirectory = true;
-                if (!(ofd.FileName == null || ofd.ShowDialog() == DialogResult.Cancel))
-                {
-                    Serialization.Serialize(ofd.FileName, Employee);
-                }
+                CreateSaveForm(Employee);
             }
             else
             {
@@ -157,19 +165,13 @@ namespace Billing_View
         /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Employee.Count != 0)
+            if (iEmployeeBindingSource.DataSource != null)
             {
                 DialogResult dialogResult = MessageBox.Show("Save changes?", "Warning", MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Asterisk);
                 if (dialogResult == DialogResult.OK)
                 {
-                    SaveFileDialog ofd = new SaveFileDialog();
-                    ofd.Filter = "txt files (*.dat)|*.dat";
-                    ofd.RestoreDirectory = true;
-                    if (!(ofd.FileName == null || ofd.ShowDialog() == DialogResult.Cancel))
-                    {
-                        Serialization.Serialize(ofd.FileName, Employee);
-                    }
+                    CreateSaveForm(Employee);
                 }
             }
         }
@@ -218,13 +220,7 @@ namespace Billing_View
                     MessageBoxIcon.Asterisk);
                 if (dialogResult == DialogResult.OK)
                 {
-                    SaveFileDialog ofd = new SaveFileDialog();
-                    ofd.Filter = "txt files (*.dat)|*.dat";
-                    ofd.RestoreDirectory = true;
-                    if (!(ofd.FileName == null || ofd.ShowDialog() == DialogResult.Cancel))
-                    {
-                        Serialization.Serialize(ofd.FileName, Employee);
-                    }
+                    CreateSaveForm(Employee);
                     iEmployeeBindingSource.Clear();
                 }
                 else
@@ -264,13 +260,7 @@ namespace Billing_View
                     MessageBoxIcon.Asterisk);
                 if (dialogResult == DialogResult.OK)
                 {
-                    SaveFileDialog ofd = new SaveFileDialog();
-                    ofd.Filter = "txt files (*.dat)|*.dat";
-                    ofd.RestoreDirectory = true;
-                    if (!(ofd.FileName == null || ofd.ShowDialog() == DialogResult.Cancel))
-                    {
-                        Serialization.Serialize(ofd.FileName, Employee);
-                    }
+                    CreateSaveForm(Employee);
                 }
             }
             Close();
@@ -286,5 +276,7 @@ namespace Billing_View
             var formSeacrh = new SearchForm(Employee);
             formSeacrh.ShowDialog();
         }
+
+       
     }
 }

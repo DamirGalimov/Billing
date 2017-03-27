@@ -110,29 +110,46 @@ namespace Billing_View
         /// <param name="e"></param>
         private void radioButtonHourlyPayEmployee_CheckedChanged(object sender, EventArgs e)
         {
+            //Текстбоксы почасовой оплаты
+            textBoxName.Visible = true;
+            textBoxSurname.Visible = true;
+            textBoxAge.Visible = true;
+            textBoxHourCost.Visible = true;
+            textBoxHoursWorked.Visible = true;
+
             textBoxName.Enabled = true;
             textBoxSurname.Enabled = true;
             textBoxAge.Enabled = true;
             textBoxHourCost.Enabled = true;
             textBoxHoursWorked.Enabled = true;
+
+            //Текстбоксы оплаты по ставке
             textBoxRate.Visible = false;
             textBoxSalary.Visible = false;
             textBoxDaysWorked.Visible = false;
 
+            //Лейблы почасовой оплаты
+            labelName.Visible = true;
+            labelSurname.Visible = true;
+            labelAge.Visible = true;
+            labelHoursWorked.Visible = true;
+            labelHourCost.Visible = true;
 
             labelName.Enabled = true;
             labelSurname.Enabled = true;
             labelAge.Enabled = true;
-
-
             labelHoursWorked.Enabled = true;
             labelHourCost.Enabled = true;
 
-
+            //Лейблы оплаты по окладу
             labelDaysWorked.Visible = false;
             labelRate.Visible = false;
             labelSalary.Visible = false;
 
+            textBoxHourCost.Location = textBoxSalary.Location;
+            textBoxHoursWorked.Location = textBoxDaysWorked.Location;
+            labelHourCost.Location = labelSalary.Location;
+            labelHoursWorked.Location = labelDaysWorked.Location;
 
         }
 
@@ -143,23 +160,39 @@ namespace Billing_View
         /// <param name="e"></param>
         private void radioButtonSalaryPayEmployee_CheckedChanged(object sender, EventArgs e)
         {
+            //Текстбоксы оплаты по окладу
+            textBoxName.Visible = true;
+            textBoxSurname.Visible = true;
+            textBoxAge.Visible = true;
+            textBoxDaysWorked.Visible = true;
+            textBoxRate.Visible = true;
+            textBoxSalary.Visible = true;
+
             textBoxName.Enabled = true;
             textBoxSurname.Enabled = true;
             textBoxAge.Enabled = true;
-            textBoxDaysWorked.Enabled = true;
+            textBoxDaysWorked.Enabled= true;
             textBoxRate.Enabled = true;
             textBoxSalary.Enabled = true;
+
+            //Текстбоксы почасовой оплаты
             textBoxHourCost.Visible = false;
             textBoxHoursWorked.Visible = false;
-
+            
+            //Лейблы оплаты по окладу
             labelName.Enabled = true;
             labelSurname.Enabled = true;
             labelAge.Enabled = true;
-
             labelDaysWorked.Enabled = true;
             labelRate.Enabled = true;
             labelSalary.Enabled = true;
 
+
+            labelDaysWorked.Visible = true;
+            labelRate.Visible = true;
+            labelSalary.Visible = true;
+
+            //Лейблы почасовой оплаты
             labelHourCost.Visible = false;
             labelHoursWorked.Visible = false;
         }
