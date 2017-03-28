@@ -24,7 +24,11 @@ namespace Billing_View
             
         }
 
-
+        /// <summary>
+        /// Кнопка поиска
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             string ss = textBoxSearch.Text;
@@ -66,6 +70,11 @@ namespace Billing_View
             }
         }
 
+        /// <summary>
+        /// Кнопка очистить таблицу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClearSearch_Click(object sender, EventArgs e)
         {
             iEmployeeBindingSource.Clear();
