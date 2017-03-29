@@ -18,7 +18,7 @@ namespace Billing_View
     public partial class MainForm : Form
     {
         private List<IEmployee> Employee;
-        
+
 
         public MainForm()
         {
@@ -68,7 +68,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void buttonRemoveEmpl_Click(object sender, EventArgs e)
         {
-            if (iEmployeeBindingSource.DataSource != null)
+            if (iEmployeeBindingSource.Count != 0)
             {
                 iEmployeeBindingSource.RemoveCurrent();
             }
@@ -85,11 +85,14 @@ namespace Billing_View
         /// <param name="e"></param>
         private void OpenTestButton_Click(object sender, EventArgs e)
         {
+            BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream fs = new FileStream("testD.dat", FileMode.OpenOrCreate))
             {
-                BinaryFormatter formatter = new BinaryFormatter();
-                List<IEmployee> empltest = (List<IEmployee>)formatter.Deserialize(fs);
-                iEmployeeBindingSource.DataSource = empltest;
+                {
+                    Employee = (List<IEmployee>)formatter.Deserialize(fs);
+                    iEmployeeBindingSource.DataSource = Employee;
+                }
+
             }
         }
 
@@ -130,8 +133,7 @@ namespace Billing_View
             {
                 try
                 {
-                    Employee = Serialization.Deserialize(ofd.FileName);
-                    iEmployeeBindingSource.DataSource = Employee;
+                    iEmployeeBindingSource.DataSource = Serialization.Deserialize(ofd.FileName);
                 }
                 catch (SerializationException)
                 {
@@ -199,7 +201,9 @@ namespace Billing_View
         {
             if (iEmployeeBindingSource.DataSource != null)
             {
-                iEmployeeBindingSource.RemoveCurrent();
+                int index = iEmployeeBindingSource.Position;
+                iEmployeeBindingSource.RemoveAt(index);
+                Employee.RemoveAt(index);
             }
             else
             {
@@ -271,12 +275,58 @@ namespace Billing_View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonSearch_Click(object sender, EventArgs e)
         {
-            var formSeacrh = new SearchForm(Employee);
-            formSeacrh.ShowDialog();
+            string text = textBoxSearch.Text;
+            string criterion = Convert.ToString(comboBoxSearch.SelectedItem);
+            switch (criterion)
+            {
+                case "Name":
+                    {
+                        iEmployeeBindingSource.DataSource = Employee.FindAll(delegate (IEmployee empl)
+                        {
+                            return empl.Name == text;
+                        });
+                        break;
+                    }
+                case "Surname":
+                    iEmployeeBindingSource.DataSource = Employee.FindAll(delegate (IEmployee empl)
+                    {
+                        return empl.Surname == text;
+                    });
+                    break;
+                case "Age":
+                    {
+                        int age = Convert.ToInt32(textBoxSearch.Text);
+                        iEmployeeBindingSource.DataSource = Employee.FindAll(delegate (IEmployee empl)
+                        {
+                            return empl.Age == age;
+                        });
+                        break;
+                    }
+                case "Payment type":
+                    {
+                        iEmployeeBindingSource.DataSource = Employee.FindAll(delegate (IEmployee empl)
+                        {
+                            PaymentType pt = ConvertPaymentType.ToPaymentType(text);
+                            return empl.PaymentType == pt;
+                        });
+                        break;
+                    }
+            }
         }
 
-       
+        /// <summary>
+        /// Вернуть список
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            iEmployeeBindingSource.DataSource = Employee;
+        }
     }
+
+
 }
+
