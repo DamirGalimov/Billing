@@ -17,14 +17,17 @@ namespace Billing_View
 {
     public partial class MainForm : Form
     {
-        private List<IEmployee> Employee;
+        private List<IEmployee> Employees;
+        private bool _change = false;
 
-
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            Employee = new List<IEmployee>();
-            iEmployeeBindingSource.DataSource = Employee;
+            Employees = new List<IEmployee>();
+            iEmployeeBindingSource.DataSource = Employees;
 #if !DEBUG
             OpenTestButton.Visible = false;
             AutoCreatebutton.Visible = false;
@@ -32,18 +35,23 @@ namespace Billing_View
 #endif
         }
 
+        private void Change()
+        {
+            _change = true;
+            this.Text = "Employees Manager* - KLaboratory";
+        }
         /// <summary>
         /// Метод для создания формы с сохранением
         /// </summary>
         /// <param name="empl"></param>
         private void CreateSaveForm(List<IEmployee> empl)
         {
-            SaveFileDialog ofd = new SaveFileDialog();
-            ofd.Filter = "txt files (*.dat)|*.dat";
-            ofd.RestoreDirectory = true;
-            if (!(ofd.FileName == null || ofd.ShowDialog() == DialogResult.Cancel))
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "txt files (*.dat)|*.dat";
+            dialog.RestoreDirectory = true;
+            if (!(dialog.FileName == null || dialog.ShowDialog() == DialogResult.Cancel))
             {
-                Serialization.Serialize(ofd.FileName, empl);
+                Serializer.Serialize(dialog.FileName, empl);
             }
         }
 
@@ -58,6 +66,7 @@ namespace Billing_View
             if (addForm.ShowDialog() == DialogResult.OK)
             {
                 iEmployeeBindingSource.Add(addForm.Employee);
+                Change();
             }
         }
 
@@ -71,10 +80,11 @@ namespace Billing_View
             if (iEmployeeBindingSource.Count != 0)
             {
                 iEmployeeBindingSource.RemoveCurrent();
+                Change();
             }
             else
             {
-                MessageBox.Show("Ошибка. Файл не может быть пустым");
+                MessageBox.Show("Error. File can not be empty");
             }
         }
 
@@ -85,15 +95,8 @@ namespace Billing_View
         /// <param name="e"></param>
         private void OpenTestButton_Click(object sender, EventArgs e)
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream fs = new FileStream("testD.dat", FileMode.OpenOrCreate))
-            {
-                {
-                    Employee = (List<IEmployee>)formatter.Deserialize(fs);
-                    iEmployeeBindingSource.DataSource = Employee;
-                }
+           iEmployeeBindingSource.DataSource = Serializer.Deserialize("test2.dat");
 
-            }
         }
 
         /// <summary>
@@ -114,11 +117,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void SaveTestButton_Click(object sender, EventArgs e)
         {
-            using (FileStream fs = new FileStream("Test.dat", FileMode.OpenOrCreate))
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(fs, Employee);
-            }
+            Serializer.Serialize("testD.dat", Employees);
         }
 
         /// <summary>
@@ -128,16 +127,17 @@ namespace Billing_View
         /// <param name="e"></param>
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (!(ofd.FileName == null || ofd.ShowDialog() == DialogResult.Cancel))
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "txt files (*.dat)|*.dat";
+            if (!(dialog.FileName == null || dialog.ShowDialog() == DialogResult.Cancel))
             {
                 try
                 {
-                    iEmployeeBindingSource.DataSource = Serialization.Deserialize(ofd.FileName);
+                    iEmployeeBindingSource.DataSource = Serializer.Deserialize(dialog.FileName);
                 }
                 catch (SerializationException)
                 {
-                    MessageBox.Show("Error ");
+                    MessageBox.Show("Error. Empty file");
                 }
             }
 
@@ -150,13 +150,13 @@ namespace Billing_View
         /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Employee.Count != 0)
+            if (iEmployeeBindingSource.Count != 0)
             {
-                CreateSaveForm(Employee);
+                CreateSaveForm(Employees);
             }
             else
             {
-                MessageBox.Show("Ошибка. Файл не может быть пустым");
+                MessageBox.Show("Error. Empty file");
             }
         }
 
@@ -167,14 +167,22 @@ namespace Billing_View
         /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (iEmployeeBindingSource.DataSource != null)
+            if (iEmployeeBindingSource.Count != 0 && _change != false)
             {
-                DialogResult dialogResult = MessageBox.Show("Save changes?", "Warning", MessageBoxButtons.OKCancel,
+                DialogResult dialogResult = MessageBox.Show("Save changes?", "Warning", MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Asterisk);
-                if (dialogResult == DialogResult.OK)
+                if (dialogResult == DialogResult.Yes)
                 {
-                    CreateSaveForm(Employee);
+                    CreateSaveForm(Employees);
                 }
+                if (dialogResult == DialogResult.No)
+                {
+                }
+                if (dialogResult == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+               
             }
         }
 
@@ -189,6 +197,7 @@ namespace Billing_View
             if (addForm.ShowDialog() == DialogResult.OK)
             {
                 iEmployeeBindingSource.Add(addForm.Employee);
+                Change();
             }
         }
 
@@ -201,13 +210,12 @@ namespace Billing_View
         {
             if (iEmployeeBindingSource.DataSource != null)
             {
-                int index = iEmployeeBindingSource.Position;
-                iEmployeeBindingSource.RemoveAt(index);
-                Employee.RemoveAt(index);
+                iEmployeeBindingSource.RemoveCurrent();
+                Change();
             }
             else
             {
-                MessageBox.Show("Ошибка. Файл не может быть пустым");
+                MessageBox.Show("Error. Empty file");
             }
         }
 
@@ -216,18 +224,18 @@ namespace Billing_View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void closeFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (iEmployeeBindingSource.DataSource != null)
             {
-                DialogResult dialogResult = MessageBox.Show("Save changes?", "Warning", MessageBoxButtons.OKCancel,
+                DialogResult dialogResult = MessageBox.Show("Save changes?", "Warning", MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Asterisk);
-                if (dialogResult == DialogResult.OK)
+                if (dialogResult == DialogResult.Yes)
                 {
-                    CreateSaveForm(Employee);
+                    CreateSaveForm(Employees);
                     iEmployeeBindingSource.Clear();
                 }
-                else
+                if (dialogResult == DialogResult.No)
                 {
                     iEmployeeBindingSource.Clear();
                 }
@@ -245,10 +253,16 @@ namespace Billing_View
             var form = new EmployeeForm();
             int index = iEmployeeBindingSource.IndexOf(iEmployeeBindingSource.Current);
             form.Employee = (IEmployee)iEmployeeBindingSource.Current;
+
             form.ShowDialog();
-            iEmployeeBindingSource.RemoveAt(index);
-            var empl = form.Employee;
-            iEmployeeBindingSource.Insert(index, empl);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                iEmployeeBindingSource.RemoveAt(index);
+                var empl = form.Employee;
+                iEmployeeBindingSource.Insert(index, empl);
+                Change();
+            }
+            
         }
 
         /// <summary>
@@ -258,13 +272,13 @@ namespace Billing_View
         /// <param name="e"></param>
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Employee.Count != 0)
+            if (iEmployeeBindingSource.DataSource != null)
             {
                 DialogResult dialogResult = MessageBox.Show("Save changes?", "Warning", MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Asterisk);
                 if (dialogResult == DialogResult.OK)
                 {
-                    CreateSaveForm(Employee);
+                    CreateSaveForm(Employees);
                 }
             }
             Close();
@@ -283,14 +297,14 @@ namespace Billing_View
             {
                 case "Name":
                     {
-                        iEmployeeBindingSource.DataSource = Employee.FindAll(delegate (IEmployee empl)
+                        iEmployeeBindingSource.DataSource = Employees.FindAll(delegate (IEmployee empl)
                         {
                             return empl.Name == text;
                         });
                         break;
                     }
                 case "Surname":
-                    iEmployeeBindingSource.DataSource = Employee.FindAll(delegate (IEmployee empl)
+                    iEmployeeBindingSource.DataSource = Employees.FindAll(delegate (IEmployee empl)
                     {
                         return empl.Surname == text;
                     });
@@ -298,7 +312,7 @@ namespace Billing_View
                 case "Age":
                     {
                         int age = Convert.ToInt32(textBoxSearch.Text);
-                        iEmployeeBindingSource.DataSource = Employee.FindAll(delegate (IEmployee empl)
+                        iEmployeeBindingSource.DataSource = Employees.FindAll(delegate (IEmployee empl)
                         {
                             return empl.Age == age;
                         });
@@ -306,7 +320,7 @@ namespace Billing_View
                     }
                 case "Payment type":
                     {
-                        iEmployeeBindingSource.DataSource = Employee.FindAll(delegate (IEmployee empl)
+                        iEmployeeBindingSource.DataSource = Employees.FindAll(delegate (IEmployee empl)
                         {
                             PaymentType pt = ConvertPaymentType.ToPaymentType(text);
                             return empl.PaymentType == pt;
@@ -321,9 +335,9 @@ namespace Billing_View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonReturnList_Click(object sender, EventArgs e)
         {
-            iEmployeeBindingSource.DataSource = Employee;
+            iEmployeeBindingSource.DataSource = Employees;
         }
     }
 

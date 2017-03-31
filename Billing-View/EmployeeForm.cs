@@ -204,18 +204,26 @@ namespace Billing_View
         /// <param name="e"></param>
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            try
+            if (radioButtonHourlyPayEmployee.Checked || radioButtonSalaryPayEmployee.Checked)
             {
-                var employee = Employee;
+                try
+                {
+                    var employee = Employee;
+                }
+                catch (FormatException fe)
+                {
+                    MessageBox.Show(fe.Message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                catch (ArgumentException fe)
+                {
+                    MessageBox.Show(fe.Message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
             }
-            catch (FormatException fe)
+            else
             {
-                MessageBox.Show(fe.Message, "Предупреждение",  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            catch (ArgumentException fe)
-            {
-                MessageBox.Show(fe.Message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Select the type of payment.");
                 return;
             }
             this.DialogResult = DialogResult.OK;
@@ -233,6 +241,105 @@ namespace Billing_View
             Close();
         }
 
-        
+       
+        /// <summary>
+        /// Метод для выведения подсказок
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <param name="message"></param>
+        private bool ErrorProvider(TextBox textBox, string message)
+        {
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                errorProvider.SetError(textBox, message);
+                return false;
+            }
+            else
+            {
+                errorProvider.SetError(textBox, null);
+                return true;
+            }
+        }
+
+
+        /// <summary>
+        /// Подсказка для имени
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxName_MouseLeave(object sender, EventArgs e)
+        {
+            ErrorProvider(textBoxName, "Name must contain only letters");
+        }
+
+        /// <summary>
+        /// Подсказка для фамилии
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxSurname_MouseLeave(object sender, EventArgs e)
+        {
+            ErrorProvider(textBoxSurname, "Surname must contain only letters.");
+        }
+
+        /// <summary>
+        /// подсказка для возраста
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxAge_MouseLeave(object sender, EventArgs e)
+        {
+            ErrorProvider(textBoxAge, "Age not less han 14 no more than 150.");
+        }
+
+        /// <summary>
+        /// подсказка для оклада
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxSalary_MouseLeave(object sender, EventArgs e)
+        {
+            ErrorProvider(textBoxSalary, "Salary not less than 10000.");
+        }
+
+
+        /// <summary>
+        /// Подсказка для отработанных дней
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxDaysWorked_MouseLeave(object sender, EventArgs e)
+        {
+            ErrorProvider(textBoxDaysWorked, "Number of days worked is not less than 0 and not more than 31.");
+        }
+
+        /// <summary>
+        /// Подсказка для ставки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxRate_MouseLeave(object sender, EventArgs e)
+        {
+            ErrorProvider(textBoxRate, "The amount of the bet is not less than 0 and not more than 1.");
+        }
+
+        /// <summary>
+        /// Подсказка для стоимости часа
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxHourCost_MouseLeave(object sender, EventArgs e)
+        {
+            ErrorProvider(textBoxHourCost, "Cost of an hour is not less than 100.");
+        }
+        /// <summary>
+        /// Подсказка для суммы отработанных часов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxHoursWorked_MouseLeave(object sender, EventArgs e)
+        {
+            ErrorProvider(textBoxHoursWorked, "Enter the number of hours worked");
+        }
     }
 }

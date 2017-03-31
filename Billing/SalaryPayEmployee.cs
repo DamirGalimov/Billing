@@ -144,7 +144,7 @@ namespace Billing
             get { return _daysWorked; }
             set
             {
-                if (value < 0)
+                if (value < 0 || value >31)
                 {
                     throw new ArgumentException("Неверно введено количество отработанных дней");
                 }

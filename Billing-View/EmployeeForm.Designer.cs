@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeForm));
             this.textBoxSurname = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
@@ -48,9 +49,11 @@
             this.labelHourCost = new System.Windows.Forms.Label();
             this.labelHoursWorked = new System.Windows.Forms.Label();
             this.buttonAdd = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox1.SuspendLayout();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.groupBoxTypePayment = new System.Windows.Forms.GroupBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.groupBoxTypePayment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxSurname
@@ -59,6 +62,7 @@
             this.textBoxSurname.Name = "textBoxSurname";
             this.textBoxSurname.Size = new System.Drawing.Size(146, 20);
             this.textBoxSurname.TabIndex = 4;
+            this.textBoxSurname.MouseLeave += new System.EventHandler(this.textBoxSurname_MouseLeave);
             // 
             // textBoxName
             // 
@@ -66,6 +70,7 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(146, 20);
             this.textBoxName.TabIndex = 3;
+            this.textBoxName.MouseLeave += new System.EventHandler(this.textBoxName_MouseLeave);
             // 
             // textBoxAge
             // 
@@ -73,33 +78,34 @@
             this.textBoxAge.Name = "textBoxAge";
             this.textBoxAge.Size = new System.Drawing.Size(146, 20);
             this.textBoxAge.TabIndex = 5;
+            this.textBoxAge.MouseLeave += new System.EventHandler(this.textBoxAge_MouseLeave);
             // 
             // labelName
             // 
             this.labelName.AutoSize = true;
             this.labelName.Location = new System.Drawing.Point(13, 89);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(95, 13);
+            this.labelName.Size = new System.Drawing.Size(38, 13);
             this.labelName.TabIndex = 4;
-            this.labelName.Text = "Name of employee";
+            this.labelName.Text = "Name:";
             // 
             // labelSurname
             // 
             this.labelSurname.AutoSize = true;
             this.labelSurname.Location = new System.Drawing.Point(11, 115);
             this.labelSurname.Name = "labelSurname";
-            this.labelSurname.Size = new System.Drawing.Size(109, 13);
+            this.labelSurname.Size = new System.Drawing.Size(52, 13);
             this.labelSurname.TabIndex = 5;
-            this.labelSurname.Text = "Surname of employee";
+            this.labelSurname.Text = "Surname:";
             // 
             // labelAge
             // 
             this.labelAge.AutoSize = true;
             this.labelAge.Location = new System.Drawing.Point(11, 141);
             this.labelAge.Name = "labelAge";
-            this.labelAge.Size = new System.Drawing.Size(86, 13);
+            this.labelAge.Size = new System.Drawing.Size(29, 13);
             this.labelAge.TabIndex = 6;
-            this.labelAge.Text = "Age of employee";
+            this.labelAge.Text = "Age:";
             // 
             // radioButtonSalaryPayEmployee
             // 
@@ -129,6 +135,7 @@
             this.textBoxSalary.Name = "textBoxSalary";
             this.textBoxSalary.Size = new System.Drawing.Size(68, 20);
             this.textBoxSalary.TabIndex = 6;
+            this.textBoxSalary.MouseLeave += new System.EventHandler(this.textBoxSalary_MouseLeave);
             // 
             // textBoxDaysWorked
             // 
@@ -136,33 +143,34 @@
             this.textBoxDaysWorked.Name = "textBoxDaysWorked";
             this.textBoxDaysWorked.Size = new System.Drawing.Size(68, 20);
             this.textBoxDaysWorked.TabIndex = 7;
+            this.textBoxDaysWorked.MouseLeave += new System.EventHandler(this.textBoxDaysWorked_MouseLeave);
             // 
             // labelSalary
             // 
             this.labelSalary.AutoSize = true;
             this.labelSalary.Location = new System.Drawing.Point(11, 167);
             this.labelSalary.Name = "labelSalary";
-            this.labelSalary.Size = new System.Drawing.Size(74, 13);
+            this.labelSalary.Size = new System.Drawing.Size(77, 13);
             this.labelSalary.TabIndex = 11;
-            this.labelSalary.Text = "Monthly salary";
+            this.labelSalary.Text = "Monthly salary:";
             // 
             // labelDaysWorked
             // 
             this.labelDaysWorked.AutoSize = true;
             this.labelDaysWorked.Location = new System.Drawing.Point(11, 193);
             this.labelDaysWorked.Name = "labelDaysWorked";
-            this.labelDaysWorked.Size = new System.Drawing.Size(168, 13);
+            this.labelDaysWorked.Size = new System.Drawing.Size(171, 13);
             this.labelDaysWorked.TabIndex = 12;
-            this.labelDaysWorked.Text = "Amount of days worked per month";
+            this.labelDaysWorked.Text = "Amount of days worked per month:";
             // 
             // labelRate
             // 
             this.labelRate.AutoSize = true;
             this.labelRate.Location = new System.Drawing.Point(11, 219);
             this.labelRate.Name = "labelRate";
-            this.labelRate.Size = new System.Drawing.Size(72, 13);
+            this.labelRate.Size = new System.Drawing.Size(75, 13);
             this.labelRate.TabIndex = 13;
-            this.labelRate.Text = "Rate of salary";
+            this.labelRate.Text = "Rate of salary:";
             // 
             // textBoxRate
             // 
@@ -170,6 +178,7 @@
             this.textBoxRate.Name = "textBoxRate";
             this.textBoxRate.Size = new System.Drawing.Size(68, 20);
             this.textBoxRate.TabIndex = 8;
+            this.textBoxRate.MouseLeave += new System.EventHandler(this.textBoxRate_MouseLeave);
             // 
             // textBoxHourCost
             // 
@@ -177,6 +186,7 @@
             this.textBoxHourCost.Name = "textBoxHourCost";
             this.textBoxHourCost.Size = new System.Drawing.Size(68, 20);
             this.textBoxHourCost.TabIndex = 9;
+            this.textBoxHourCost.MouseLeave += new System.EventHandler(this.textBoxHourCost_MouseLeave);
             // 
             // textBoxHoursWorked
             // 
@@ -184,24 +194,25 @@
             this.textBoxHoursWorked.Name = "textBoxHoursWorked";
             this.textBoxHoursWorked.Size = new System.Drawing.Size(68, 20);
             this.textBoxHoursWorked.TabIndex = 10;
+            this.textBoxHoursWorked.MouseLeave += new System.EventHandler(this.textBoxHoursWorked_MouseLeave);
             // 
             // labelHourCost
             // 
             this.labelHourCost.AutoSize = true;
             this.labelHourCost.Location = new System.Drawing.Point(11, 245);
             this.labelHourCost.Name = "labelHourCost";
-            this.labelHourCost.Size = new System.Drawing.Size(67, 13);
+            this.labelHourCost.Size = new System.Drawing.Size(56, 13);
             this.labelHourCost.TabIndex = 17;
-            this.labelHourCost.Text = "Cost of hour ";
+            this.labelHourCost.Text = "Hour cost:";
             // 
             // labelHoursWorked
             // 
             this.labelHoursWorked.AutoSize = true;
             this.labelHoursWorked.Location = new System.Drawing.Point(11, 271);
             this.labelHoursWorked.Name = "labelHoursWorked";
-            this.labelHoursWorked.Size = new System.Drawing.Size(122, 13);
+            this.labelHoursWorked.Size = new System.Drawing.Size(125, 13);
             this.labelHoursWorked.TabIndex = 18;
-            this.labelHoursWorked.Text = "Amount of hours worked";
+            this.labelHoursWorked.Text = "Amount of hours worked:";
             // 
             // buttonAdd
             // 
@@ -214,35 +225,39 @@
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonOK_Click);
             // 
-            // button1
+            // buttonCancel
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(278, 292);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCancel.Location = new System.Drawing.Point(278, 292);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 12;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // groupBox1
+            // groupBoxTypePayment
             // 
-            this.groupBox1.Controls.Add(this.radioButtonSalaryPayEmployee);
-            this.groupBox1.Controls.Add(this.radioButtonHourlyPayEmployee);
-            this.groupBox1.Location = new System.Drawing.Point(16, 10);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(181, 63);
-            this.groupBox1.TabIndex = 22;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Choose type of payment:";
+            this.groupBoxTypePayment.Controls.Add(this.radioButtonSalaryPayEmployee);
+            this.groupBoxTypePayment.Controls.Add(this.radioButtonHourlyPayEmployee);
+            this.groupBoxTypePayment.Location = new System.Drawing.Point(16, 10);
+            this.groupBoxTypePayment.Name = "groupBoxTypePayment";
+            this.groupBoxTypePayment.Size = new System.Drawing.Size(181, 63);
+            this.groupBoxTypePayment.TabIndex = 22;
+            this.groupBoxTypePayment.TabStop = false;
+            this.groupBoxTypePayment.Text = "Choose type of payment:";
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 327);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBoxTypePayment);
+            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.labelHoursWorked);
             this.Controls.Add(this.labelHourCost);
@@ -264,8 +279,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EmployeeForm";
             this.Text = "Employee";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxTypePayment.ResumeLayout(false);
+            this.groupBoxTypePayment.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,7 +307,8 @@
         private System.Windows.Forms.Label labelHourCost;
         private System.Windows.Forms.Label labelHoursWorked;
         private System.Windows.Forms.Button buttonAdd;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.GroupBox groupBoxTypePayment;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

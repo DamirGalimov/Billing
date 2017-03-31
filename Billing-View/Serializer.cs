@@ -10,7 +10,7 @@ using System.Runtime.Serialization;
 namespace Billing_View
 
 {
-    public static class Serialization
+    public static class Serializer
     {
         static BinaryFormatter formatter = new BinaryFormatter();
 
