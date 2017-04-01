@@ -103,8 +103,8 @@ namespace Billing
             get { return _age; }
             set
             {
-                if (value >= 150 || value < 14)
-                    throw new ArgumentException("Неверно введет возраст, не менее 14, не более 150 лет");
+                if (value > 150 || value < 14)
+                    throw new ArgumentException("Incorrecly entered the age, not less than 14, not more than 150.");
                 _age = value;
             }
         }
@@ -131,7 +131,7 @@ namespace Billing
             {
                 if (value < 100)
                 {
-                    throw new ArgumentException("Неверно введена стоимость часа, не меньше 100");
+                    throw new ArgumentException("Incorrecly entered hour cost, not less than 100.");
                 }
                 _hourCost = value;
             }
@@ -148,7 +148,8 @@ namespace Billing
             {
                 if (value < 0 || value >300)
                 {
-                    throw new ArgumentException("Неверно введена сумма отработанных часов, не меньше 0, не более 300");
+                    throw new ArgumentException("Incorrecly entered amount of hours worked, " +
+                                                "not less than 0, not more than 300");
                 }
                 _hoursWorked = value;
             }

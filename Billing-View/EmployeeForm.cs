@@ -39,6 +39,34 @@ namespace Billing_View
             labelHoursWorked.Enabled = false;
         }
 
+
+        private int ConvertToInt(string text, string FileName)
+        {
+            int view;
+            try
+            {
+                view = Convert.ToInt32(text);
+            }
+            catch (FormatException)
+            {
+                throw new FormatException("Field '" + FileName + "' must contain only digits.");
+            }
+            return view;
+        }
+
+        private double ConvertToDouble(string text, string FileName)
+        {
+            double view;
+            try
+            {
+                view = Convert.ToDouble(text);
+            }
+            catch (FormatException)
+            {
+                throw new FormatException("Field '" + FileName + "' must contain only digits.");
+            }
+            return view;
+        }
         /// <summary>
         /// Создание или изменение работника
         /// </summary>
@@ -53,9 +81,9 @@ namespace Billing_View
                     {
                         Name = textBoxName.Text,
                         Surname = textBoxSurname.Text,
-                        Age = Convert.ToInt32(textBoxAge.Text),
-                        HourCost = Convert.ToDouble(textBoxHourCost.Text),
-                        HoursWorked = Convert.ToInt32(textBoxHoursWorked.Text)
+                        Age = ConvertToInt(textBoxAge.Text, "Age"),
+                        HourCost = ConvertToDouble(textBoxHourCost.Text, "Hour cost"),
+                        HoursWorked = ConvertToInt(textBoxHoursWorked.Text, "Hours worked")
                     }; 
                 }
                 else
@@ -64,10 +92,10 @@ namespace Billing_View
                     {
                         Name = textBoxName.Text,
                         Surname = textBoxSurname.Text,
-                        Age = Convert.ToInt32(textBoxAge.Text),
-                        DaysWorked = Convert.ToInt32(textBoxDaysWorked.Text),
-                        Rate = Convert.ToDouble(textBoxRate.Text),
-                        Salary = Convert.ToDouble(textBoxSalary.Text)
+                        Age = ConvertToInt(textBoxAge.Text, "Age"),
+                        DaysWorked = ConvertToInt(textBoxDaysWorked.Text, "Days worked"),
+                        Rate = ConvertToDouble(textBoxRate.Text, "Rate"),
+                        Salary = ConvertToDouble(textBoxSalary.Text, "Salary")
                     }; 
                 }
             }
@@ -247,17 +275,17 @@ namespace Billing_View
         /// </summary>
         /// <param name="textBox"></param>
         /// <param name="message"></param>
-        private bool ErrorProvider(TextBox textBox, string message)
+        private void ErrorProvider(TextBox textBox, string message)
         {
             if (string.IsNullOrEmpty(textBox.Text))
             {
                 errorProvider.SetError(textBox, message);
-                return false;
+
             }
             else
             {
                 errorProvider.SetError(textBox, null);
-                return true;
+          
             }
         }
 
@@ -310,7 +338,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void textBoxDaysWorked_MouseLeave(object sender, EventArgs e)
         {
-            ErrorProvider(textBoxDaysWorked, "Number of days worked is not less than 0 and not more than 31.");
+            ErrorProvider(textBoxDaysWorked, "Amount of days worked is not less than 0 and not more than 31.");
         }
 
         /// <summary>
@@ -320,7 +348,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void textBoxRate_MouseLeave(object sender, EventArgs e)
         {
-            ErrorProvider(textBoxRate, "The amount of the bet is not less than 0 and not more than 1.");
+            ErrorProvider(textBoxRate, "Amount of the bet is not less than 0 and not more than 1.");
         }
 
         /// <summary>
