@@ -19,15 +19,16 @@ namespace Billing_View
     {
         private List<IEmployee> Employees;
         private bool _change = false;
-
+        private string fileName;
         /// <summary>
         /// Конструктор
         /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            Employees = new List<IEmployee>();
-            iEmployeeBindingSource.DataSource = Employees;
+            EnableMainForm(false);
+
+
 #if !DEBUG
             OpenTestButton.Visible = false;
             AutoCreatebutton.Visible = false;
@@ -35,10 +36,41 @@ namespace Billing_View
 #endif
         }
 
-        private void Change()
+        private void EnableMainForm(bool var)
         {
-            _change = true;
-            this.Text = "Employees Manager* - KLaboratory";
+            groupBoxEmployees.Enabled = var;
+            groupBoxSearch.Enabled = var;
+            billingGridView.Enabled = var;
+            groupBoxEmployees.Enabled = var;
+            buttonAddEmpl.Enabled = var;
+            buttonRemoveEmployee.Enabled = var;
+            buttonSearch.Enabled = var;
+            buttonReturnList.Enabled = var;
+            buttonAutoCreate.Enabled = var;
+            buttonOpenTest.Enabled = var;
+            buttonSaveTest.Enabled = var;
+        }
+
+        /// <summary>
+        ///Фиксация изменений
+        /// </summary>
+        private void Change(bool check)
+        {
+            if (check)
+            {
+                this.Text = fileName.Substring(fileName.LastIndexOf("\\")+1) + "* - KLaboratory";
+            }
+            else
+            {
+                if (fileName != null)
+                {
+                    this.Text = fileName.Substring(fileName.LastIndexOf("\\") + 1) + " - KLabaratory";
+                }
+                else
+                {
+                    this.Text = "Employees Manager - KLaboratory";
+                }
+            }
         }
         /// <summary>
         /// Метод для создания формы с сохранением
@@ -53,6 +85,7 @@ namespace Billing_View
             {
                 Serializer.Serialize(dialog.FileName, empl);
             }
+            fileName = dialog.FileName;
         }
 
         /// <summary>
@@ -66,7 +99,7 @@ namespace Billing_View
             if (addForm.ShowDialog() == DialogResult.OK)
             {
                 iEmployeeBindingSource.Add(addForm.Employee);
-                Change();
+                Change(true);
             }
         }
 
@@ -80,7 +113,7 @@ namespace Billing_View
             if (iEmployeeBindingSource.Count != 0)
             {
                 iEmployeeBindingSource.RemoveCurrent();
-                Change();
+                Change(true);
             }
             else
             {
@@ -140,7 +173,9 @@ namespace Billing_View
                     MessageBox.Show("Error. Empty file");
                 }
             }
-
+            fileName = dialog.FileName;
+            EnableMainForm(true);
+            Change(false);
         }
 
         /// <summary>
@@ -197,7 +232,7 @@ namespace Billing_View
             if (addForm.ShowDialog() == DialogResult.OK)
             {
                 iEmployeeBindingSource.Add(addForm.Employee);
-                Change();
+                Change(true);
             }
         }
 
@@ -211,7 +246,7 @@ namespace Billing_View
             if (iEmployeeBindingSource.DataSource != null)
             {
                 iEmployeeBindingSource.RemoveCurrent();
-                Change();
+                Change(true);
             }
             else
             {
@@ -240,7 +275,9 @@ namespace Billing_View
                     iEmployeeBindingSource.Clear();
                 }
             }
-
+            fileName = null;
+            EnableMainForm(false);
+            Change(false);
         }
 
         /// <summary>
@@ -260,7 +297,7 @@ namespace Billing_View
                 iEmployeeBindingSource.RemoveAt(index);
                 var empl = form.Employee;
                 iEmployeeBindingSource.Insert(index, empl);
-                Change();
+                Change(true);
             }
             
         }
@@ -338,6 +375,20 @@ namespace Billing_View
         private void buttonReturnList_Click(object sender, EventArgs e)
         {
             iEmployeeBindingSource.DataSource = Employees;
+        }
+
+        /// <summary>
+        /// Создание файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Employees = new List<IEmployee>();
+            iEmployeeBindingSource.DataSource = Employees;
+            CreateSaveForm(Employees);
+            EnableMainForm(true);
+            Change(false);
         }
     }
 

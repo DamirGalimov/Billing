@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxEmployees = new System.Windows.Forms.GroupBox();
             this.billingGridView = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,10 +38,10 @@
             this.paymentTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Wages = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iEmployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.OpenTestButton = new System.Windows.Forms.Button();
-            this.AutoCreatebutton = new System.Windows.Forms.Button();
-            this.SaveTestButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonOpenTest = new System.Windows.Forms.Button();
+            this.buttonAutoCreate = new System.Windows.Forms.Button();
+            this.buttonSaveTest = new System.Windows.Forms.Button();
+            this.buttonRemoveEmployee = new System.Windows.Forms.Button();
             this.buttonAddEmpl = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,32 +53,33 @@
             this.addEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifyEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBoxSearch = new System.Windows.Forms.GroupBox();
             this.buttonReturnList = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelEnter = new System.Windows.Forms.Label();
+            this.labelCriterion = new System.Windows.Forms.Label();
             this.comboBoxSearch = new System.Windows.Forms.ComboBox();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.buttonSearch = new System.Windows.Forms.Button();
-            this.GroupBox1.SuspendLayout();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBoxEmployees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.billingGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iEmployeeBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBoxSearch.SuspendLayout();
             this.SuspendLayout();
             // 
-            // GroupBox1
+            // groupBoxEmployees
             // 
-            this.GroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupBoxEmployees.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupBox1.Controls.Add(this.billingGridView);
-            this.GroupBox1.Location = new System.Drawing.Point(7, 23);
-            this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(738, 206);
-            this.GroupBox1.TabIndex = 1;
-            this.GroupBox1.TabStop = false;
-            this.GroupBox1.Text = "Employees";
+            this.groupBoxEmployees.Controls.Add(this.billingGridView);
+            this.groupBoxEmployees.Location = new System.Drawing.Point(7, 23);
+            this.groupBoxEmployees.Name = "groupBoxEmployees";
+            this.groupBoxEmployees.Size = new System.Drawing.Size(738, 206);
+            this.groupBoxEmployees.TabIndex = 1;
+            this.groupBoxEmployees.TabStop = false;
+            this.groupBoxEmployees.Text = "Employees";
             // 
             // billingGridView
             // 
@@ -144,49 +145,49 @@
             // 
             this.iEmployeeBindingSource.DataSource = typeof(Billing.IEmployee);
             // 
-            // OpenTestButton
+            // buttonOpenTest
             // 
-            this.OpenTestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.OpenTestButton.Location = new System.Drawing.Point(305, 292);
-            this.OpenTestButton.Name = "OpenTestButton";
-            this.OpenTestButton.Size = new System.Drawing.Size(66, 23);
-            this.OpenTestButton.TabIndex = 6;
-            this.OpenTestButton.Text = "Open Test";
-            this.OpenTestButton.UseVisualStyleBackColor = true;
-            this.OpenTestButton.Click += new System.EventHandler(this.OpenTestButton_Click);
+            this.buttonOpenTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonOpenTest.Location = new System.Drawing.Point(305, 292);
+            this.buttonOpenTest.Name = "buttonOpenTest";
+            this.buttonOpenTest.Size = new System.Drawing.Size(66, 23);
+            this.buttonOpenTest.TabIndex = 6;
+            this.buttonOpenTest.Text = "Open Test";
+            this.buttonOpenTest.UseVisualStyleBackColor = true;
+            this.buttonOpenTest.Click += new System.EventHandler(this.OpenTestButton_Click);
             // 
-            // AutoCreatebutton
+            // buttonAutoCreate
             // 
-            this.AutoCreatebutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AutoCreatebutton.Location = new System.Drawing.Point(377, 292);
-            this.AutoCreatebutton.Name = "AutoCreatebutton";
-            this.AutoCreatebutton.Size = new System.Drawing.Size(103, 23);
-            this.AutoCreatebutton.TabIndex = 5;
-            this.AutoCreatebutton.Text = "Automation Create";
-            this.AutoCreatebutton.UseVisualStyleBackColor = true;
-            this.AutoCreatebutton.Click += new System.EventHandler(this.AutoCreatebutton_Click);
+            this.buttonAutoCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAutoCreate.Location = new System.Drawing.Point(377, 292);
+            this.buttonAutoCreate.Name = "buttonAutoCreate";
+            this.buttonAutoCreate.Size = new System.Drawing.Size(103, 23);
+            this.buttonAutoCreate.TabIndex = 5;
+            this.buttonAutoCreate.Text = "Automation Create";
+            this.buttonAutoCreate.UseVisualStyleBackColor = true;
+            this.buttonAutoCreate.Click += new System.EventHandler(this.AutoCreatebutton_Click);
             // 
-            // SaveTestButton
+            // buttonSaveTest
             // 
-            this.SaveTestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SaveTestButton.Location = new System.Drawing.Point(233, 292);
-            this.SaveTestButton.Name = "SaveTestButton";
-            this.SaveTestButton.Size = new System.Drawing.Size(66, 23);
-            this.SaveTestButton.TabIndex = 4;
-            this.SaveTestButton.Text = "Save Test";
-            this.SaveTestButton.UseVisualStyleBackColor = true;
-            this.SaveTestButton.Click += new System.EventHandler(this.SaveTestButton_Click);
+            this.buttonSaveTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonSaveTest.Location = new System.Drawing.Point(233, 292);
+            this.buttonSaveTest.Name = "buttonSaveTest";
+            this.buttonSaveTest.Size = new System.Drawing.Size(66, 23);
+            this.buttonSaveTest.TabIndex = 4;
+            this.buttonSaveTest.Text = "Save Test";
+            this.buttonSaveTest.UseVisualStyleBackColor = true;
+            this.buttonSaveTest.Click += new System.EventHandler(this.SaveTestButton_Click);
             // 
-            // button2
+            // buttonRemoveEmployee
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(114, 292);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Remove employee";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.buttonRemoveEmpl_Click);
+            this.buttonRemoveEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonRemoveEmployee.Location = new System.Drawing.Point(114, 292);
+            this.buttonRemoveEmployee.Name = "buttonRemoveEmployee";
+            this.buttonRemoveEmployee.Size = new System.Drawing.Size(113, 23);
+            this.buttonRemoveEmployee.TabIndex = 3;
+            this.buttonRemoveEmployee.Text = "Remove employee";
+            this.buttonRemoveEmployee.UseVisualStyleBackColor = true;
+            this.buttonRemoveEmployee.Click += new System.EventHandler(this.buttonRemoveEmpl_Click);
             // 
             // buttonAddEmpl
             // 
@@ -213,6 +214,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.closeFileToolStripMenuItem,
@@ -280,21 +282,21 @@
             this.modifyEmployeeToolStripMenuItem.Text = "Modify employee";
             this.modifyEmployeeToolStripMenuItem.Click += new System.EventHandler(this.modifyEmployeeToolStripMenuItem_Click);
             // 
-            // groupBox2
+            // groupBoxSearch
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.buttonReturnList);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.comboBoxSearch);
-            this.groupBox2.Controls.Add(this.textBoxSearch);
-            this.groupBox2.Controls.Add(this.buttonSearch);
-            this.groupBox2.Location = new System.Drawing.Point(486, 235);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(247, 80);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Search";
+            this.groupBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxSearch.Controls.Add(this.buttonReturnList);
+            this.groupBoxSearch.Controls.Add(this.labelEnter);
+            this.groupBoxSearch.Controls.Add(this.labelCriterion);
+            this.groupBoxSearch.Controls.Add(this.comboBoxSearch);
+            this.groupBoxSearch.Controls.Add(this.textBoxSearch);
+            this.groupBoxSearch.Controls.Add(this.buttonSearch);
+            this.groupBoxSearch.Location = new System.Drawing.Point(486, 235);
+            this.groupBoxSearch.Name = "groupBoxSearch";
+            this.groupBoxSearch.Size = new System.Drawing.Size(247, 80);
+            this.groupBoxSearch.TabIndex = 7;
+            this.groupBoxSearch.TabStop = false;
+            this.groupBoxSearch.Text = "Search";
             // 
             // buttonReturnList
             // 
@@ -306,23 +308,23 @@
             this.buttonReturnList.UseVisualStyleBackColor = true;
             this.buttonReturnList.Click += new System.EventHandler(this.buttonReturnList_Click);
             // 
-            // label2
+            // labelEnter
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Enter:";
+            this.labelEnter.AutoSize = true;
+            this.labelEnter.Location = new System.Drawing.Point(7, 59);
+            this.labelEnter.Name = "labelEnter";
+            this.labelEnter.Size = new System.Drawing.Size(35, 13);
+            this.labelEnter.TabIndex = 4;
+            this.labelEnter.Text = "Enter:";
             // 
-            // label1
+            // labelCriterion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Criterion:";
+            this.labelCriterion.AutoSize = true;
+            this.labelCriterion.Location = new System.Drawing.Point(7, 22);
+            this.labelCriterion.Name = "labelCriterion";
+            this.labelCriterion.Size = new System.Drawing.Size(48, 13);
+            this.labelCriterion.TabIndex = 3;
+            this.labelCriterion.Text = "Criterion:";
             // 
             // comboBoxSearch
             // 
@@ -354,31 +356,38 @@
             this.buttonSearch.UseVisualStyleBackColor = true;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createToolStripMenuItem.Text = "Create";
+            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(745, 327);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.SaveTestButton);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.groupBoxSearch);
+            this.Controls.Add(this.buttonSaveTest);
+            this.Controls.Add(this.buttonRemoveEmployee);
             this.Controls.Add(this.buttonAddEmpl);
-            this.Controls.Add(this.AutoCreatebutton);
-            this.Controls.Add(this.OpenTestButton);
-            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this.buttonAutoCreate);
+            this.Controls.Add(this.buttonOpenTest);
+            this.Controls.Add(this.groupBoxEmployees);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Employees Manager - KLaboratory";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.GroupBox1.ResumeLayout(false);
+            this.groupBoxEmployees.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.billingGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iEmployeeBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBoxSearch.ResumeLayout(false);
+            this.groupBoxSearch.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,10 +395,10 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox GroupBox1;
+        private System.Windows.Forms.GroupBox groupBoxEmployees;
         private System.Windows.Forms.DataGridView billingGridView;
         private System.Windows.Forms.Button buttonAddEmpl;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonRemoveEmployee;
         private System.Windows.Forms.BindingSource iEmployeeBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn surnameDataGridViewTextBoxColumn;
@@ -401,21 +410,22 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.Button SaveTestButton;
-        private System.Windows.Forms.Button AutoCreatebutton;
-        private System.Windows.Forms.Button OpenTestButton;
+        private System.Windows.Forms.Button buttonSaveTest;
+        private System.Windows.Forms.Button buttonAutoCreate;
+        private System.Windows.Forms.Button buttonOpenTest;
         private System.Windows.Forms.ToolStripMenuItem addEmployeeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeEmployeeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifyEmployeeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBoxSearch;
+        private System.Windows.Forms.Label labelCriterion;
         private System.Windows.Forms.ComboBox comboBoxSearch;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelEnter;
         private System.Windows.Forms.Button buttonReturnList;
+        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
     }
 }
 
