@@ -27,8 +27,8 @@ namespace Billing_View
         {
             InitializeComponent();
             EnableMainForm(false);
-            Employees = new List<IEmployee>();
-            iEmployeeBindingSource.DataSource = Employees;
+            //Employees = new List<IEmployee>();
+            iEmployeeBindingSource.DataSource = Employees = new List<IEmployee>();
 
 #if !DEBUG
             OpenTestButton.Visible = false;
@@ -59,7 +59,7 @@ namespace Billing_View
         {
             if (check)
             {
-                this.Text = fileName.Substring(fileName.LastIndexOf("\\")+1) + "* - KLaboratory";
+                this.Text = fileName.Substring(fileName.LastIndexOf("\\") + 1) + "* - KLaboratory";
             }
             else
             {
@@ -73,7 +73,7 @@ namespace Billing_View
                 }
             }
         }
-        
+
         /// <summary>
         /// Метод для создания формы с сохранением
         /// </summary>
@@ -132,7 +132,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void OpenTestButton_Click(object sender, EventArgs e)
         {
-           iEmployeeBindingSource.DataSource = Serializer.Deserialize("test2.dat");
+            iEmployeeBindingSource.DataSource = Serializer.Deserialize("test2.dat");
 
         }
 
@@ -170,7 +170,7 @@ namespace Billing_View
             {
                 try
                 {
-                    iEmployeeBindingSource.DataSource = Serializer.Deserialize(dialog.FileName);
+                    iEmployeeBindingSource.DataSource = Employees = Serializer.Deserialize(dialog.FileName);
                 }
                 catch (SerializationException)
                 {
@@ -221,7 +221,7 @@ namespace Billing_View
                 {
                     e.Cancel = true;
                 }
-               
+
             }
         }
 
@@ -286,7 +286,7 @@ namespace Billing_View
             {
                 MessageBox.Show("Error. Empty file");
             }
-            
+
         }
 
         /// <summary>
@@ -299,8 +299,6 @@ namespace Billing_View
             var form = new EmployeeForm();
             int index = iEmployeeBindingSource.IndexOf(iEmployeeBindingSource.Current);
             form.Employee = (IEmployee)iEmployeeBindingSource.Current;
-
-            form.ShowDialog();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 iEmployeeBindingSource.RemoveAt(index);
@@ -308,7 +306,7 @@ namespace Billing_View
                 iEmployeeBindingSource.Insert(index, empl);
                 Change(true);
             }
-            
+
         }
 
         /// <summary>
