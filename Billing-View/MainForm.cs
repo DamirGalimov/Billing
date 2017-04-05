@@ -27,7 +27,8 @@ namespace Billing_View
         {
             InitializeComponent();
             EnableMainForm(false);
-
+            Employees = new List<IEmployee>();
+            iEmployeeBindingSource.DataSource = Employees;
 
 #if !DEBUG
             OpenTestButton.Visible = false;
@@ -72,6 +73,7 @@ namespace Billing_View
                 }
             }
         }
+        
         /// <summary>
         /// Метод для создания формы с сохранением
         /// </summary>
@@ -84,8 +86,10 @@ namespace Billing_View
             if (!(dialog.FileName == null || dialog.ShowDialog() == DialogResult.Cancel))
             {
                 Serializer.Serialize(dialog.FileName, empl);
+                fileName = dialog.FileName;
+                EnableMainForm(true);
             }
-            fileName = dialog.FileName;
+            Change(false);
         }
 
         /// <summary>
@@ -172,10 +176,10 @@ namespace Billing_View
                 {
                     MessageBox.Show("Error. Empty file");
                 }
+                fileName = dialog.FileName;
+                EnableMainForm(true);
+                Change(false);
             }
-            fileName = dialog.FileName;
-            EnableMainForm(true);
-            Change(false);
         }
 
         /// <summary>
@@ -261,7 +265,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (iEmployeeBindingSource.DataSource != null)
+            if (iEmployeeBindingSource.Count != 0)
             {
                 DialogResult dialogResult = MessageBox.Show("Save changes?", "Warning", MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Asterisk);
@@ -274,10 +278,15 @@ namespace Billing_View
                 {
                     iEmployeeBindingSource.Clear();
                 }
+                fileName = null;
+                EnableMainForm(false);
+                Change(false);
             }
-            fileName = null;
-            EnableMainForm(false);
-            Change(false);
+            else
+            {
+                MessageBox.Show("Error. Empty file");
+            }
+            
         }
 
         /// <summary>
@@ -384,10 +393,8 @@ namespace Billing_View
         /// <param name="e"></param>
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Employees = new List<IEmployee>();
-            iEmployeeBindingSource.DataSource = Employees;
+
             CreateSaveForm(Employees);
-            EnableMainForm(true);
             Change(false);
         }
     }
