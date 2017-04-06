@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Billing\EmployeeBaseTest.cs" />
     <Compile Include="Billing\HourlyPayEmployeeTest.cs" />
     <Compile Include="Billing\SalaryPayEmployeeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
