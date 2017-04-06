@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataChecking.cs" />
+    <Compile Include="EmployeeBase.cs" />
     <Compile Include="HourlyPayEmployee.cs" />
     <Compile Include="IEmployee.cs" />
     <Compile Include="SalaryPayEmployee.cs" />
