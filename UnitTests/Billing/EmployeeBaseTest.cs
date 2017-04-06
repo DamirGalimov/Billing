@@ -1,11 +1,10 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Billing;
+using System;
 
 
 namespace UnitTests.Billing
 {
-    [TestFixture]
     public class EmployeeBaseTest
     {
         [Test]
@@ -46,6 +45,5 @@ namespace UnitTests.Billing
             var hpe = new HourlyPayEmployee();
             hpe.Age = age;
         }
-
     }
 }
