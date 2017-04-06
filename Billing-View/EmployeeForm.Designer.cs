@@ -62,7 +62,7 @@
             this.textBoxSurname.Name = "textBoxSurname";
             this.textBoxSurname.Size = new System.Drawing.Size(146, 20);
             this.textBoxSurname.TabIndex = 4;
-            this.textBoxSurname.MouseLeave += new System.EventHandler(this.textBoxSurname_MouseLeave);
+            this.textBoxSurname.Leave += new System.EventHandler(this.textBoxSurname_Leave);
             // 
             // textBoxName
             // 
@@ -70,7 +70,7 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(146, 20);
             this.textBoxName.TabIndex = 3;
-            this.textBoxName.MouseLeave += new System.EventHandler(this.textBoxName_MouseLeave);
+            this.textBoxName.Leave += new System.EventHandler(this.textBoxName_Leave);
             // 
             // textBoxAge
             // 
@@ -78,7 +78,7 @@
             this.textBoxAge.Name = "textBoxAge";
             this.textBoxAge.Size = new System.Drawing.Size(146, 20);
             this.textBoxAge.TabIndex = 5;
-            this.textBoxAge.MouseLeave += new System.EventHandler(this.textBoxAge_MouseLeave);
+            this.textBoxAge.Leave += new System.EventHandler(this.textBoxAge_Leave);
             // 
             // labelName
             // 
@@ -114,6 +114,7 @@
             this.radioButtonSalaryPayEmployee.Name = "radioButtonSalaryPayEmployee";
             this.radioButtonSalaryPayEmployee.Size = new System.Drawing.Size(67, 17);
             this.radioButtonSalaryPayEmployee.TabIndex = 1;
+            this.radioButtonSalaryPayEmployee.TabStop = true;
             this.radioButtonSalaryPayEmployee.Text = "By salary";
             this.radioButtonSalaryPayEmployee.UseVisualStyleBackColor = true;
             this.radioButtonSalaryPayEmployee.CheckedChanged += new System.EventHandler(this.radioButtonSalaryPayEmployee_CheckedChanged);
@@ -125,6 +126,7 @@
             this.radioButtonHourlyPayEmployee.Name = "radioButtonHourlyPayEmployee";
             this.radioButtonHourlyPayEmployee.Size = new System.Drawing.Size(61, 17);
             this.radioButtonHourlyPayEmployee.TabIndex = 2;
+            this.radioButtonHourlyPayEmployee.TabStop = true;
             this.radioButtonHourlyPayEmployee.Text = "By hour";
             this.radioButtonHourlyPayEmployee.UseVisualStyleBackColor = true;
             this.radioButtonHourlyPayEmployee.CheckedChanged += new System.EventHandler(this.radioButtonHourlyPayEmployee_CheckedChanged);
@@ -135,7 +137,7 @@
             this.textBoxSalary.Name = "textBoxSalary";
             this.textBoxSalary.Size = new System.Drawing.Size(68, 20);
             this.textBoxSalary.TabIndex = 6;
-            this.textBoxSalary.MouseLeave += new System.EventHandler(this.textBoxSalary_MouseLeave);
+            this.textBoxSalary.Leave += new System.EventHandler(this.textBoxSalary_Leave);
             // 
             // textBoxDaysWorked
             // 
@@ -143,7 +145,7 @@
             this.textBoxDaysWorked.Name = "textBoxDaysWorked";
             this.textBoxDaysWorked.Size = new System.Drawing.Size(68, 20);
             this.textBoxDaysWorked.TabIndex = 7;
-            this.textBoxDaysWorked.MouseLeave += new System.EventHandler(this.textBoxDaysWorked_MouseLeave);
+            this.textBoxDaysWorked.Leave += new System.EventHandler(this.textBoxDaysWorked_Leave);
             // 
             // labelSalary
             // 
@@ -178,7 +180,7 @@
             this.textBoxRate.Name = "textBoxRate";
             this.textBoxRate.Size = new System.Drawing.Size(68, 20);
             this.textBoxRate.TabIndex = 8;
-            this.textBoxRate.MouseLeave += new System.EventHandler(this.textBoxRate_MouseLeave);
+            this.textBoxRate.Leave += new System.EventHandler(this.textBoxRate_Leave);
             // 
             // textBoxHourCost
             // 
@@ -186,7 +188,7 @@
             this.textBoxHourCost.Name = "textBoxHourCost";
             this.textBoxHourCost.Size = new System.Drawing.Size(68, 20);
             this.textBoxHourCost.TabIndex = 9;
-            this.textBoxHourCost.MouseLeave += new System.EventHandler(this.textBoxHourCost_MouseLeave);
+            this.textBoxHourCost.Leave += new System.EventHandler(this.textBoxHourCost_Leave);
             // 
             // textBoxHoursWorked
             // 
@@ -194,7 +196,7 @@
             this.textBoxHoursWorked.Name = "textBoxHoursWorked";
             this.textBoxHoursWorked.Size = new System.Drawing.Size(68, 20);
             this.textBoxHoursWorked.TabIndex = 10;
-            this.textBoxHoursWorked.MouseLeave += new System.EventHandler(this.textBoxHoursWorked_MouseLeave);
+            this.textBoxHoursWorked.Leave += new System.EventHandler(this.textBoxHoursWorked_Leave);
             // 
             // labelHourCost
             // 

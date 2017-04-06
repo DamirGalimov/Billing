@@ -13,8 +13,8 @@ namespace UnitTests.Billing
     {
         [Test]
         [TestCase ("Ololosh", TestName = "Тестирование HourlyPayEmployee.Name при присваивании позитивного значения 'Ololosh'")]
-        [TestCase(97, ExpectedException = typeof(ArgumentException), TestName = 
-            "Тестирование HourlyPayEmployee.Name при присваивании негативного значения - 97.")]
+        [TestCase("97", ExpectedException = typeof(ArgumentException), TestName = 
+            "Тестирование HourlyPayEmployee.Name при присваивании негативного значения - '97'.")]
         public void NameTest(string name)
         {
             var hpe = new HourlyPayEmployee();

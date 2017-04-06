@@ -19,7 +19,7 @@ namespace Billing_View
     {
         private List<IEmployee> Employees;
         private bool _change = false;
-        private string fileName;
+        private string _fileName;
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -27,7 +27,6 @@ namespace Billing_View
         {
             InitializeComponent();
             EnableMainForm(false);
-            //Employees = new List<IEmployee>();
             iEmployeeBindingSource.DataSource = Employees = new List<IEmployee>();
 
 #if !DEBUG
@@ -50,27 +49,32 @@ namespace Billing_View
             buttonAutoCreate.Enabled = var;
             buttonOpenTest.Enabled = var;
             buttonSaveTest.Enabled = var;
+            addEmployeeToolStripMenuItem.Enabled = var;
+            removeEmployeeToolStripMenuItem.Enabled = var;
+            modifyEmployeeToolStripMenuItem.Enabled = var;
         }
 
         /// <summary>
-        ///Фиксация изменений
+        ///Изменения заголовка файла
         /// </summary>
-        private void Change(bool check)
+        private void IsDataChange(bool check)
         {
             if (check)
             {
-                this.Text = fileName.Substring(fileName.LastIndexOf("\\") + 1) + "* - KLaboratory";
+                this.Text = _fileName.Substring(_fileName.LastIndexOf("\\") + 1) + "* - KLaboratory";
+                _change = true;
             }
             else
             {
-                if (fileName != null)
+                if (_fileName != null)
                 {
-                    this.Text = fileName.Substring(fileName.LastIndexOf("\\") + 1) + " - KLabaratory";
+                    this.Text = _fileName.Substring(_fileName.LastIndexOf("\\") + 1) + " - KLabaratory";
                 }
                 else
                 {
                     this.Text = "Employees Manager - KLaboratory";
                 }
+                _change = false;
             }
         }
 
@@ -86,10 +90,10 @@ namespace Billing_View
             if (!(dialog.FileName == null || dialog.ShowDialog() == DialogResult.Cancel))
             {
                 Serializer.Serialize(dialog.FileName, empl);
-                fileName = dialog.FileName;
+                _fileName = dialog.FileName;
                 EnableMainForm(true);
             }
-            Change(false);
+            IsDataChange(false);
         }
 
         /// <summary>
@@ -103,7 +107,8 @@ namespace Billing_View
             if (addForm.ShowDialog() == DialogResult.OK)
             {
                 iEmployeeBindingSource.Add(addForm.Employee);
-                Change(true);
+                IsDataChange(true);
+                _change = true;
             }
         }
 
@@ -117,7 +122,8 @@ namespace Billing_View
             if (iEmployeeBindingSource.Count != 0)
             {
                 iEmployeeBindingSource.RemoveCurrent();
-                Change(true);
+                IsDataChange(true);
+                _change = true;
             }
             else
             {
@@ -145,6 +151,7 @@ namespace Billing_View
         {
             iEmployeeBindingSource.Add(new SalaryPayEmployee("Artur", "Kun", 20, 30000, 20, 1));
             iEmployeeBindingSource.Add(new HourlyPayEmployee("Ivan", "Viderhspan", 20, 120, 130));
+            IsDataChange(true);
         }
 
         /// <summary>
@@ -176,18 +183,19 @@ namespace Billing_View
                 {
                     MessageBox.Show("Error. Empty file");
                 }
-                fileName = dialog.FileName;
+                _fileName = dialog.FileName;
                 EnableMainForm(true);
-                Change(false);
+                IsDataChange(false);
+                _change = false;
             }
         }
 
         /// <summary>
-        /// Сохранение из меню
+        /// Сохраненить как, из меню
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (iEmployeeBindingSource.Count != 0)
             {
@@ -236,7 +244,7 @@ namespace Billing_View
             if (addForm.ShowDialog() == DialogResult.OK)
             {
                 iEmployeeBindingSource.Add(addForm.Employee);
-                Change(true);
+                IsDataChange(true);
             }
         }
 
@@ -250,7 +258,7 @@ namespace Billing_View
             if (iEmployeeBindingSource.DataSource != null)
             {
                 iEmployeeBindingSource.RemoveCurrent();
-                Change(true);
+                IsDataChange(true);
             }
             else
             {
@@ -278,9 +286,9 @@ namespace Billing_View
                 {
                     iEmployeeBindingSource.Clear();
                 }
-                fileName = null;
+                _fileName = null;
                 EnableMainForm(false);
-                Change(false);
+                IsDataChange(false);
             }
             else
             {
@@ -304,7 +312,8 @@ namespace Billing_View
                 iEmployeeBindingSource.RemoveAt(index);
                 var empl = form.Employee;
                 iEmployeeBindingSource.Insert(index, empl);
-                Change(true);
+                IsDataChange(true);
+                _change = true;
             }
 
         }
@@ -393,7 +402,25 @@ namespace Billing_View
         {
 
             CreateSaveForm(Employees);
-            Change(false);
+            IsDataChange(false);
+        }
+
+        /// <summary>
+        /// Сохранение из меню
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (iEmployeeBindingSource.Count != 0)
+            {
+                Serializer.Serialize(_fileName, Employees);
+                IsDataChange(false);
+            }
+            else
+            {
+                MessageBox.Show("Error. Empty file");
+            }
         }
     }
 

@@ -67,6 +67,7 @@ namespace Billing_View
             }
             return view;
         }
+
         /// <summary>
         /// Создание или изменение работника
         /// </summary>
@@ -84,7 +85,7 @@ namespace Billing_View
                         Age = ConvertToInt(textBoxAge.Text, "Age"),
                         HourCost = ConvertToDouble(textBoxHourCost.Text, "Hour cost"),
                         HoursWorked = ConvertToInt(textBoxHoursWorked.Text, "Hours worked")
-                    }; 
+                    };
                 }
                 else
                 {
@@ -96,7 +97,7 @@ namespace Billing_View
                         DaysWorked = ConvertToInt(textBoxDaysWorked.Text, "Days worked"),
                         Rate = ConvertToDouble(textBoxRate.Text, "Rate"),
                         Salary = ConvertToDouble(textBoxSalary.Text, "Salary")
-                    }; 
+                    };
                 }
             }
 
@@ -106,7 +107,7 @@ namespace Billing_View
                 {
                     radioButtonHourlyPayEmployee.Checked = true;
                     var empl = new HourlyPayEmployee();
-                    empl = (HourlyPayEmployee)value;
+                    empl = (HourlyPayEmployee) value;
                     textBoxName.Text = empl.Name;
                     textBoxSurname.Text = empl.Surname;
                     textBoxAge.Text = Convert.ToString(empl.Age);
@@ -199,14 +200,14 @@ namespace Billing_View
             textBoxName.Enabled = true;
             textBoxSurname.Enabled = true;
             textBoxAge.Enabled = true;
-            textBoxDaysWorked.Enabled= true;
+            textBoxDaysWorked.Enabled = true;
             textBoxRate.Enabled = true;
             textBoxSalary.Enabled = true;
 
             //Текстбоксы почасовой оплаты
             textBoxHourCost.Visible = false;
             textBoxHoursWorked.Visible = false;
-            
+
             //Лейблы оплаты по окладу
             labelName.Enabled = true;
             labelSurname.Enabled = true;
@@ -269,7 +270,7 @@ namespace Billing_View
             Close();
         }
 
-       
+
         /// <summary>
         /// Метод для выведения подсказок
         /// </summary>
@@ -285,7 +286,7 @@ namespace Billing_View
             else
             {
                 errorProvider.SetError(textBox, null);
-          
+
             }
         }
 
@@ -295,7 +296,7 @@ namespace Billing_View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBoxName_MouseLeave(object sender, EventArgs e)
+        private void textBoxName_Leave(object sender, EventArgs e)
         {
             ErrorProvider(textBoxName, "Name must contain only letters");
         }
@@ -305,7 +306,7 @@ namespace Billing_View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBoxSurname_MouseLeave(object sender, EventArgs e)
+        private void textBoxSurname_Leave(object sender, EventArgs e)
         {
             ErrorProvider(textBoxSurname, "Surname must contain only letters.");
         }
@@ -315,7 +316,7 @@ namespace Billing_View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBoxAge_MouseLeave(object sender, EventArgs e)
+        private void textBoxAge_Leave(object sender, EventArgs e)
         {
             ErrorProvider(textBoxAge, "Age not less han 14 no more than 150.");
         }
@@ -325,7 +326,7 @@ namespace Billing_View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBoxSalary_MouseLeave(object sender, EventArgs e)
+        private void textBoxSalary_Leave(object sender, EventArgs e)
         {
             ErrorProvider(textBoxSalary, "Salary not less than 10000.");
         }
@@ -336,7 +337,7 @@ namespace Billing_View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBoxDaysWorked_MouseLeave(object sender, EventArgs e)
+        private void textBoxDaysWorked_Leave(object sender, EventArgs e)
         {
             ErrorProvider(textBoxDaysWorked, "Amount of days worked is not less than 0 and not more than 31.");
         }
@@ -346,7 +347,7 @@ namespace Billing_View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBoxRate_MouseLeave(object sender, EventArgs e)
+        private void textBoxRate_Leave(object sender, EventArgs e)
         {
             ErrorProvider(textBoxRate, "Amount of the bet is not less than 0 and not more than 1.");
         }
@@ -356,18 +357,21 @@ namespace Billing_View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBoxHourCost_MouseLeave(object sender, EventArgs e)
+        private void textBoxHourCost_Leave(object sender, EventArgs e)
         {
             ErrorProvider(textBoxHourCost, "Cost of an hour is not less than 100.");
         }
+
         /// <summary>
         /// Подсказка для суммы отработанных часов
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textBoxHoursWorked_MouseLeave(object sender, EventArgs e)
+        private void textBoxHoursWorked_Leave(object sender, EventArgs e)
         {
             ErrorProvider(textBoxHoursWorked, "Enter the number of hours worked");
         }
+
+        
     }
 }
