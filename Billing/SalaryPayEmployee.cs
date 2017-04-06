@@ -7,24 +7,8 @@ namespace Billing
     /// Работник получающий ЗП по окладу
     /// </summary>
     [Serializable]
-    public class SalaryPayEmployee: IEmployee
+    public class SalaryPayEmployee: EmployeeBase, IEmployee
     {
-        /// <summary>
-        /// Имя работника
-        /// </summary>
-        private string _name;
-        /// <summary>
-        /// Фамилия работника
-        /// </summary>
-        private string _surname;
-        /// <summary>
-        /// Возраст работника
-        /// </summary>
-        private int _age;
-        /// <summary>
-        /// Информация о том как начисляется ЗП
-        /// </summary>
-        private PaymentType _paymentType = PaymentType.PaymentOfSalary;
         /// <summary>
         /// ставка НДФЛ в процентах
         /// </summary>
@@ -68,56 +52,14 @@ namespace Billing
         }
 
         /// <summary>
-        /// Аксессор получения имени
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = SetChecking(value);
-            }
-        }
-
-        /// <summary>
-        /// Аксессор получения фамилии
-        /// </summary>
-        public string Surname
-        {
-            get
-            {
-                return _surname;
-            }
-
-            set
-            {
-                _surname = SetChecking(value);
-            }
-        }
-
-        /// <summary>
-        /// Аксессор получения возраста
-        /// </summary>
-        public int Age
-        {
-            get { return _age; }
-            set
-            {
-                if (value > 150 || value < 14)
-                    throw new ArgumentException("Incorrecly entered the age, not less than 14, not more than 150.");
-                _age = value;
-            }
-        }
-
-        /// <summary>
         /// Аксессор для получения информации о типе начисления ЗП
         /// </summary>
-        public PaymentType PaymentType
+        public override PaymentType PaymentType
         {
-            get { return _paymentType; }
+            get
+            {
+                return PaymentType.PaymentOfSalary;
+            }
         }
 
         /// <summary>
@@ -176,22 +118,11 @@ namespace Billing
         /// 400руб - стандартный вычет для резидентов РФ.
         /// </summary>
         /// <returns>ЗП в рублях расчитанная по формуле с учетом НДЛФ, вычетов и ставки</returns>
-        public double SalariesEnrollment()
+        public override double SalariesEnrollment()
         {
             return Math.Round((((_salary) - ((_salary - 400) * IncomeTax) / 100) 
                 * _daysWorked  * _rate) / 
                 WorkingCalendare.WorkingDaysInMonth[(DateTime.Now.Month-1)]); 
-        }
-
-        /// <summary>
-        /// Получение размера ЗП
-        /// </summary>
-        public double Wages
-        {
-            get
-            {
-                return SalariesEnrollment();
-            }
         }
     }
 }

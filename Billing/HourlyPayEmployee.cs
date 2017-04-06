@@ -9,24 +9,8 @@ namespace Billing
     /// Работник получающий зарплату по почасовой оплате
     /// </summary>
     [Serializable]
-    public class HourlyPayEmployee : IEmployee
+    public class HourlyPayEmployee : EmployeeBase, IEmployee
     {
-        /// <summary>
-        /// Имя работника
-        /// </summary>
-        private string _name;
-        /// <summary>
-        /// Фамилия работника
-        /// </summary>
-        private  string _surname;
-        /// <summary>
-        /// Возраст работника
-        /// </summary>
-        private int _age;
-        /// <summary>
-        /// Информация о том как начисляется ЗП
-        /// </summary>
-        private PaymentType _paymentType = PaymentType.HourlyPay;
         /// <summary>
         /// ставка НДЛФ в процентах
         /// </summary>
@@ -63,60 +47,15 @@ namespace Billing
             HourCost = hourCost;
             HoursWorked = hoursWorked;
         }
-
-        /// <summary>
-        /// Аксессор получения имени
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = SetChecking(value);
-            }
-        }
-
-        /// <summary>
-        /// Аксессор получения фамилии
-        /// </summary>
-        public string Surname
-        {
-            get
-            {
-                return _surname;
-            }
-
-            set
-            {
-                _surname = SetChecking(value);
-            }
-        }
-
-        /// <summary>
-        /// Аксессорполучения возраста
-        /// </summary>
-        public int Age
-        {
-            get { return _age; }
-            set
-            {
-                if (value > 150 || value < 14)
-                    throw new ArgumentException("Incorrecly entered the age, not less than 14, not more than 150.");
-                _age = value;
-            }
-        }
         
         /// <summary>
         /// Аксессор для получения информации о типе начисления ЗП
         /// </summary>
-        public PaymentType PaymentType
+        public override PaymentType PaymentType
         {
             get
             {
-                return _paymentType;
+                return PaymentType.HourlyPay;
             }
         }
 
@@ -160,21 +99,9 @@ namespace Billing
         /// 400руб - стандартный вычет для резидентов РФ.
         /// </summary>
         /// <returns>ЗП в рублях расчитанная по формуле с учетом НДЛФ и вычетов</returns>
-        public double SalariesEnrollment()
+        public override double SalariesEnrollment()
         {
             return (_hoursWorked *_hourCost) - ((_hoursWorked * _hourCost - 400)*IncomeTax)/100;
         }
-
-        /// <summary>
-        /// Получение размера ЗП
-        /// </summary>
-        public double Wages
-        {
-            get
-            {
-                return SalariesEnrollment();
-            }
-        }
-    }
-        
+    }      
 }
