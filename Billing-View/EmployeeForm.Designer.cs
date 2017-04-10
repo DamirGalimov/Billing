@@ -161,9 +161,9 @@
             this.labelDaysWorked.AutoSize = true;
             this.labelDaysWorked.Location = new System.Drawing.Point(11, 193);
             this.labelDaysWorked.Name = "labelDaysWorked";
-            this.labelDaysWorked.Size = new System.Drawing.Size(171, 13);
+            this.labelDaysWorked.Size = new System.Drawing.Size(122, 13);
             this.labelDaysWorked.TabIndex = 12;
-            this.labelDaysWorked.Text = "Amount of days worked per month:";
+            this.labelDaysWorked.Text = "Days worked per month:";
             // 
             // labelRate
             // 

@@ -224,6 +224,8 @@ namespace Billing_View
             //Лейблы почасовой оплаты
             labelHourCost.Visible = false;
             labelHoursWorked.Visible = false;
+
+
         }
 
         /// <summary>

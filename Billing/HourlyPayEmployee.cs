@@ -101,7 +101,7 @@ namespace Billing
         /// <returns>ЗП в рублях расчитанная по формуле с учетом НДЛФ и вычетов</returns>
         public override double SalariesEnrollment()
         {
-            return (_hoursWorked *_hourCost) - ((_hoursWorked * _hourCost - 400)*IncomeTax)/100;
+            return Math.Round((_hoursWorked *_hourCost) - ((_hoursWorked * _hourCost - 400)*IncomeTax)/100);
         }
     }      
 }
