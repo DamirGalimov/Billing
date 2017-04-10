@@ -52,6 +52,7 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxTypePayment = new System.Windows.Forms.GroupBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.employeeControl1 = new Billing_View.EmployeeControl();
             this.groupBoxTypePayment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -219,7 +220,7 @@
             // buttonAdd
             // 
             this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAdd.Location = new System.Drawing.Point(197, 292);
+            this.buttonAdd.Location = new System.Drawing.Point(448, 292);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 11;
@@ -230,7 +231,7 @@
             // buttonCancel
             // 
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCancel.Location = new System.Drawing.Point(278, 292);
+            this.buttonCancel.Location = new System.Drawing.Point(529, 292);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 12;
@@ -253,11 +254,20 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // employeeControl1
+            // 
+            this.employeeControl1.Location = new System.Drawing.Point(349, 10);
+            this.employeeControl1.Name = "employeeControl1";
+            this.employeeControl1.ReadOnly = false;
+            this.employeeControl1.Size = new System.Drawing.Size(255, 269);
+            this.employeeControl1.TabIndex = 23;
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 327);
+            this.ClientSize = new System.Drawing.Size(616, 327);
+            this.Controls.Add(this.employeeControl1);
             this.Controls.Add(this.groupBoxTypePayment);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAdd);
@@ -312,5 +322,6 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.GroupBox groupBoxTypePayment;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private EmployeeControl employeeControl1;
     }
 }
