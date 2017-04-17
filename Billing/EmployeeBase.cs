@@ -38,6 +38,10 @@ namespace Billing
             }
             set
             {
+                if (value.Length == 0)
+                {
+                    throw new ArgumentException("Name can not be empty.");
+                }
                 _name = SetChecking(value);
             }
         }
@@ -53,6 +57,10 @@ namespace Billing
 
             set
             {
+                if (value.Length == 0)
+                {
+                    throw new ArgumentException("Surname can not be empty.");
+                }
                 _surname = SetChecking(value);
             }
         }
