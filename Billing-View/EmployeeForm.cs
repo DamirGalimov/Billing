@@ -63,10 +63,13 @@ namespace Billing_View
         {
             try
             {
+                MessageBox.Show("");
                 _employee = employeeControl.Employee;
+                MessageBox.Show("");
             }
             catch (FormatException fe)
             {
+
                 MessageBox.Show(fe.Message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
