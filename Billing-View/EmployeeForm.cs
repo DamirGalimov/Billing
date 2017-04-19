@@ -24,6 +24,9 @@ namespace Billing_View
         /// </summary>
         private IEmployee _employee;
 
+        /// <summary>
+        /// Устанавливает или возвращает работника
+        /// </summary>
         public IEmployee Employee
         {
             get
@@ -36,7 +39,11 @@ namespace Billing_View
             }
         }
 
-
+        /// <summary>
+        /// Кнопка ОК
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOK_Click(object sender, EventArgs e)
         {
             try
@@ -56,6 +63,11 @@ namespace Billing_View
             }
         }
 
+        /// <summary>
+        /// Кнопка Cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

@@ -60,7 +60,7 @@
             this.employeeControl.Employee = null;
             this.employeeControl.Location = new System.Drawing.Point(1, 10);
             this.employeeControl.Name = "employeeControl";
-            this.employeeControl.ReadOnly = false;
+            //this.employeeControl.ReadOnly = false;
             this.employeeControl.Size = new System.Drawing.Size(271, 216);
             this.employeeControl.TabIndex = 2;
             // 
