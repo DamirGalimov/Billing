@@ -29,12 +29,12 @@ namespace Billing_View
             {
                 if (comboBox.SelectedIndex == 0)
                 {
-                    hourlyPayEmployeeControl.Enabled = true;
+                    
                     return hourlyPayEmployeeControl.HourlyPayEmployee;
                 }
                 else if (comboBox.SelectedIndex == 1)
                 {
-                    salaryPayEmployeeControl.Enabled = true;
+                    
                     return salaryPayEmployeeControl.SalaryPayEmployee;
                 }
                 else

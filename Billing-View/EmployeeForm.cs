@@ -16,6 +16,7 @@ namespace Billing_View
         public EmployeeForm()
         {
             InitializeComponent();
+            employeeControl.ReadOnly = false;
         }
 
         /// <summary>
@@ -31,7 +32,7 @@ namespace Billing_View
             }
             set
             {
-                //employeeControl.Employee = value;
+                employeeControl.Employee = value;
             }
         }
 
@@ -41,7 +42,7 @@ namespace Billing_View
             try
             {
 
-                //_employee = employeeControl.Employee;
+                _employee = employeeControl.Employee;
 
                 this.DialogResult = DialogResult.OK;
                 Close();
