@@ -28,50 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.hourlyPayEmployeeControl1 = new Billing_View.HourlyPayEmployeeControl();
-            this.salaryPayEmployeeControl1 = new Billing_View.SalaryPayEmployeeControl();
+            this.comboBox = new System.Windows.Forms.ComboBox();
+            this.hourlyPayEmployeeControl = new Billing_View.HourlyPayEmployeeControl();
+            this.salaryPayEmployeeControl = new Billing_View.SalaryPayEmployeeControl();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // comboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(105, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
+            this.comboBox.FormattingEnabled = true;
+            this.comboBox.Location = new System.Drawing.Point(123, 3);
+            this.comboBox.Name = "comboBox";
+            this.comboBox.Size = new System.Drawing.Size(121, 21);
+            this.comboBox.TabIndex = 0;
+            this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
-            // hourlyPayEmployeeControl1
+            // hourlyPayEmployeeControl
             // 
-            this.hourlyPayEmployeeControl1.Location = new System.Drawing.Point(13, 48);
-            this.hourlyPayEmployeeControl1.Name = "hourlyPayEmployeeControl1";
-            this.hourlyPayEmployeeControl1.Size = new System.Drawing.Size(255, 141);
-            this.hourlyPayEmployeeControl1.TabIndex = 1;
+            this.hourlyPayEmployeeControl.Location = new System.Drawing.Point(0, 30);
+            this.hourlyPayEmployeeControl.Name = "hourlyPayEmployeeControl";
+            this.hourlyPayEmployeeControl.Size = new System.Drawing.Size(255, 141);
+            this.hourlyPayEmployeeControl.TabIndex = 1;
             // 
-            // salaryPayEmployeeControl1
+            // salaryPayEmployeeControl
             // 
-            this.salaryPayEmployeeControl1.Location = new System.Drawing.Point(9, 48);
-            this.salaryPayEmployeeControl1.Name = "salaryPayEmployeeControl1";
-            this.salaryPayEmployeeControl1.Size = new System.Drawing.Size(262, 166);
-            this.salaryPayEmployeeControl1.TabIndex = 2;
+            this.salaryPayEmployeeControl.Location = new System.Drawing.Point(0, 30);
+            this.salaryPayEmployeeControl.Name = "salaryPayEmployeeControl";
+            this.salaryPayEmployeeControl.Size = new System.Drawing.Size(262, 166);
+            this.salaryPayEmployeeControl.TabIndex = 2;
             // 
             // EmployeeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.salaryPayEmployeeControl1);
-            this.Controls.Add(this.hourlyPayEmployeeControl1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.salaryPayEmployeeControl);
+            this.Controls.Add(this.hourlyPayEmployeeControl);
+            this.Controls.Add(this.comboBox);
             this.Name = "EmployeeControl";
-            this.Size = new System.Drawing.Size(271, 261);
+            this.Size = new System.Drawing.Size(278, 193);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private HourlyPayEmployeeControl hourlyPayEmployeeControl1;
-        private SalaryPayEmployeeControl salaryPayEmployeeControl1;
+        private System.Windows.Forms.ComboBox comboBox;
+        private HourlyPayEmployeeControl hourlyPayEmployeeControl;
+        private SalaryPayEmployeeControl salaryPayEmployeeControl;
     }
 }
