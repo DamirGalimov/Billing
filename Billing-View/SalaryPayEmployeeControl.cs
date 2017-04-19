@@ -28,9 +28,6 @@ namespace Billing_View
             {
                 if (textBoxName.Text == string.Empty)
                     return null;
-                if (textBoxSurname.Text == string.Empty)
-                    return null;
-
                 return new SalaryPayEmployee
                 {
                     Name = textBoxName.Text,
