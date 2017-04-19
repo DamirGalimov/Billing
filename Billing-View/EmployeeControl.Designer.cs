@@ -28,48 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-           
             // 
-            // comboBox
+            // comboBox1
             // 
-            this.comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox.FormattingEnabled = true;
-            this.comboBox.Items.AddRange(new object[] {
-            "By hour",
-            "By salary"});
-            this.comboBox.Location = new System.Drawing.Point(148, 5);
-            this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(89, 21);
-            this.comboBox.TabIndex = 2;
-            this.comboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Selected type of employee:";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(105, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 0;
             // 
             // EmployeeControl
             // 
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comboBox1);
             this.Name = "EmployeeControl";
-            this.Size = new System.Drawing.Size(269, 199);
+            this.Size = new System.Drawing.Size(229, 261);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        
-        private System.Windows.Forms.ComboBox comboBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

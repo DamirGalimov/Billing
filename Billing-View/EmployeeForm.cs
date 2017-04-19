@@ -13,14 +13,16 @@ namespace Billing_View
 {
     public partial class EmployeeForm : Form
     {
+        public EmployeeForm()
+        {
+            InitializeComponent();
+        }
+
         /// <summary>
         /// Переменная для хранения работника
         /// </summary>
         private IEmployee _employee;
 
-        /// <summary>
-        /// Свойство принимающее или возвращающее работника
-        /// </summary>
         public IEmployee Employee
         {
             get
@@ -33,38 +35,12 @@ namespace Billing_View
             }
         }
 
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        public EmployeeForm()
-        {
-            InitializeComponent();
-            //employeeControl.ReadOnly = false;
 
-        }
-
-
-        /// <summary>
-        /// Кнопка отмены
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        /// <summary>
-        /// Кнопка ОК
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonOK_Click(object sender, EventArgs e)
+        private void buttonOK_Click(object sender, EventArgs e)
         {
             try
             {
-                
+
                 //_employee = employeeControl.Employee;
 
                 this.DialogResult = DialogResult.OK;
@@ -73,10 +49,16 @@ namespace Billing_View
 
             catch (Exception de)
             {
-                
+
                 MessageBox.Show(de.Message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

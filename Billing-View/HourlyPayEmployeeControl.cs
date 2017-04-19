@@ -27,10 +27,10 @@ namespace Billing_View
         {
             get
             {
-                //if (textBoxName.Text == string.Empty)
-                //    return null;
-                //if (textBoxSurname.Text == string.Empty)
-                //    return null;
+                if (textBoxName.Text == string.Empty)
+                    return null;
+                if (textBoxSurname.Text == string.Empty)
+                    return null;
                 try
                 {
                     return new HourlyPayEmployee
@@ -42,7 +42,7 @@ namespace Billing_View
                         HoursWorked = ConvertCheck.ConvertToInt(textBoxHoursWorked.Text, "Hours worked")
                     };
                 }
-                catch (Exception e)
+                catch (Exception )
                 {
                     throw new Exception("");
                 }
