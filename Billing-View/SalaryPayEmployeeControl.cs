@@ -26,10 +26,11 @@ namespace Billing_View
         {
             get
             {
-                if (textBoxName.Text == string.Empty)
-                    return null;
+                //if (textBoxName.Text == string.Empty)
+                //    return null;
                 //if (textBoxSurname.Text == string.Empty)
                 //    return null;
+                
                 return new SalaryPayEmployee
                 {
                     Name = textBoxName.Text,

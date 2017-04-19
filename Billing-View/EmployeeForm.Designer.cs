@@ -28,18 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.employeeControl = new Billing_View.EmployeeControl();
+           
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // employeeControl
-            // 
-            this.employeeControl.Employee = null;
-            this.employeeControl.Location = new System.Drawing.Point(12, 12);
-            this.employeeControl.Name = "employeeControl";
-            this.employeeControl.Size = new System.Drawing.Size(243, 214);
-            this.employeeControl.TabIndex = 0;
+            
             // 
             // buttonOK
             // 
@@ -66,7 +59,7 @@
             this.ClientSize = new System.Drawing.Size(282, 282);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
-            this.Controls.Add(this.employeeControl);
+           // this.Controls.Add(this.employeeControl);
             this.Name = "EmployeeForm";
             this.ResumeLayout(false);
 
@@ -75,7 +68,6 @@
         #endregion
         
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private EmployeeControl employeeControl;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
     }

@@ -79,7 +79,6 @@ namespace Billing_View
             {
                 if (value)
                 {
-
                     hourlyPayEmployeeControl.ReadOnly = true;
                     salaryPayEmployeeControl.ReadOnly = true;
                 }
