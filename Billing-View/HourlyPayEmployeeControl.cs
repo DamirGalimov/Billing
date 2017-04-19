@@ -27,18 +27,25 @@ namespace Billing_View
         {
             get
             {
-                if (textBoxName.Text == string.Empty)
-                    return null;
+//                if (textBoxName.Text == string.Empty)
+ //                   return null;
                 //if (textBoxSurname.Text == string.Empty)
                 //    return null;
-                return new HourlyPayEmployee
+                try
                 {
-                    Name = textBoxName.Text,
-                    Surname = textBoxSurname.Text,
-                    Age = ConvertCheck.ConvertToInt(textBoxAge.Text, "Age"),
-                    HourCost = ConvertCheck.ConvertToDouble(textBoxHourCost.Text, "Hour cost"),
-                    HoursWorked = ConvertCheck.ConvertToInt(textBoxHoursWorked.Text, "Hours worked")
-                };
+                    return new HourlyPayEmployee
+                    {
+                        Name = textBoxName.Text,
+                        Surname = textBoxSurname.Text,
+                        Age = ConvertCheck.ConvertToInt(textBoxAge.Text, "Age"),
+                        HourCost = ConvertCheck.ConvertToDouble(textBoxHourCost.Text, "Hour cost"),
+                        HoursWorked = ConvertCheck.ConvertToInt(textBoxHoursWorked.Text, "Hours worked")
+                    };
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("");
+                }
             }
             set
             {

@@ -37,14 +37,14 @@ namespace Billing_View
                 {
                     return hourlyPayEmployeeControl.HourlyPayEmployee;
                 }
-                else if (comboBox.SelectedIndex == 1)
+                else
                 {
                     return salaryPayEmployeeControl.SalaryPayEmployee;
                 }
-                else
-                {
-                    return null;
-                }
+                //else
+                //{
+                //    throw new Exception("");
+                //}
                 
             }
             set

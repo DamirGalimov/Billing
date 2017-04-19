@@ -63,23 +63,18 @@ namespace Billing_View
         {
             try
             {
-                MessageBox.Show("");
                 _employee = employeeControl.Employee;
-                MessageBox.Show("");
-            }
-            catch (FormatException fe)
-            {
 
-                MessageBox.Show(fe.Message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                this.DialogResult = DialogResult.OK;
+                Close();
             }
-            catch (ArgumentException fe)
+
+            catch (Exception de)
             {
-                MessageBox.Show(fe.Message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                
+                MessageBox.Show(de.Message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            this.DialogResult = DialogResult.OK;
-            Close();
         }
     }
 }
