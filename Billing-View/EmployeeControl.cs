@@ -35,32 +35,33 @@ namespace Billing_View
             {
                 if (comboBox.SelectedIndex == 0)
                 {
+                    hourlyPayEmployeeControl.Enabled = true;
                     return hourlyPayEmployeeControl.HourlyPayEmployee;
+                }
+                else if (comboBox.SelectedIndex == 1)
+                {
+                    salaryPayEmployeeControl.Enabled = true;
+                    return salaryPayEmployeeControl.SalaryPayEmployee;
                 }
                 else
                 {
-                    return salaryPayEmployeeControl.SalaryPayEmployee;
+                    throw new Exception("Type of employee is not selected.");
                 }
-                //else
-                //{
-                //    throw new Exception("");
-                //}
-                
             }
             set
             {
                 if (value is HourlyPayEmployee)
                 {
                     hourlyPayEmployeeControl.HourlyPayEmployee = (HourlyPayEmployee)value;
-                    comboBox.SelectedIndex = 1;
+                    comboBox.SelectedIndex = 0;
                     hourlyPayEmployeeControl.Visible = true;
                     hourlyPayEmployeeControl.Enabled = true;
                     salaryPayEmployeeControl.Visible = false;
                 }
                 if (value is SalaryPayEmployee)
                 {
-                    salaryPayEmployeeControl.SalaryPayEmployee = (SalaryPayEmployee) value;
-                    comboBox.SelectedIndex = 0;
+                    salaryPayEmployeeControl.SalaryPayEmployee = (SalaryPayEmployee)value;
+                    comboBox.SelectedIndex = 1;
                     salaryPayEmployeeControl.Visible = true;
                     salaryPayEmployeeControl.Enabled = true;
                     hourlyPayEmployeeControl.Visible = false;
@@ -78,7 +79,7 @@ namespace Billing_View
             {
                 if (value)
                 {
-                    
+
                     hourlyPayEmployeeControl.ReadOnly = true;
                     salaryPayEmployeeControl.ReadOnly = true;
                 }
@@ -110,7 +111,7 @@ namespace Billing_View
                 salaryPayEmployeeControl.Enabled = true;
                 salaryPayEmployeeControl.Visible = true;
             }
-          
+
         }
     }
 }
