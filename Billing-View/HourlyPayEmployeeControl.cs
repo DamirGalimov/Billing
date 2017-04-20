@@ -30,21 +30,14 @@ namespace Billing_View
                 if (textBoxName.Text == string.Empty)
                     return null;
 
-                try
+                return new HourlyPayEmployee
                 {
-                    return new HourlyPayEmployee
-                    {
-                        Name = textBoxName.Text,
-                        Surname = textBoxSurname.Text,
-                        Age = ConvertCheck.ConvertToInt(textBoxAge.Text, "Age"),
-                        HourCost = ConvertCheck.ConvertToDouble(textBoxHourCost.Text, "Hour cost"),
-                        HoursWorked = ConvertCheck.ConvertToInt(textBoxHoursWorked.Text, "Hours worked")
-                    };
-                }
-                catch (Exception )
-                {
-                    throw new Exception("");
-                }
+                    Name = textBoxName.Text,
+                    Surname = textBoxSurname.Text,
+                    Age = ConvertCheck.ConvertToInt(textBoxAge.Text, "Age"),
+                    HourCost = ConvertCheck.ConvertToDouble(textBoxHourCost.Text, "Hour cost"),
+                    HoursWorked = ConvertCheck.ConvertToInt(textBoxHoursWorked.Text, "Hours worked")
+                };
             }
             set
             {
@@ -110,6 +103,11 @@ namespace Billing_View
         /// <param name="e"></param>
         private void textBoxName_Leave(object sender, EventArgs e)
         {
+            if (textBoxName.Text.Length == 0)
+            {
+                MessageBox.Show("Name must contain only letters");
+                
+            }
             ErrorProvider(textBoxName, "Name must contain only letters");
         }
 

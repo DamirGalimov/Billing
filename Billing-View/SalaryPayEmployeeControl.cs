@@ -106,6 +106,10 @@ namespace Billing_View
         /// <param name="e"></param>
         private void textBoxName_Leave(object sender, EventArgs e)
         {
+            if (textBoxName.Text.Length == 0)
+            {
+                MessageBox.Show("Name must contain only letters");
+            }
             ErrorProvider(textBoxName, "Name must contain only letters");
         }
 

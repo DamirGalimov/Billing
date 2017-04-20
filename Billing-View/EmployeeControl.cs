@@ -18,6 +18,11 @@ namespace Billing_View
             InitializeComponent();
             hourlyPayEmployeeControl.Enabled = false;
             salaryPayEmployeeControl.Enabled = false;
+            comboBox.SelectedIndex = 0;
+            label2.Visible = true;
+            label1.Visible = false;
+            comboBox.Visible = false;
+            label2.Text = "";
         }
 
         /// <summary>
@@ -51,6 +56,7 @@ namespace Billing_View
                     hourlyPayEmployeeControl.Visible = true;
                     hourlyPayEmployeeControl.Enabled = true;
                     salaryPayEmployeeControl.Visible = false;
+                    label2.Text = "Type of payment: hourly";
                 }
                 if (value is SalaryPayEmployee)
                 {
@@ -59,7 +65,7 @@ namespace Billing_View
                     salaryPayEmployeeControl.Visible = true;
                     salaryPayEmployeeControl.Enabled = true;
                     hourlyPayEmployeeControl.Visible = false;
-
+                    label2.Text = "Type of payment: salary";
                 }
             }
         }
@@ -75,12 +81,19 @@ namespace Billing_View
                 {
                     hourlyPayEmployeeControl.ReadOnly = true;
                     salaryPayEmployeeControl.ReadOnly = true;
+                    label2.Visible = true;
+                    label1.Visible = false;
+                    comboBox.Visible = false;
                 }
                 else
                 {
                     hourlyPayEmployeeControl.ReadOnly = false;
                     salaryPayEmployeeControl.ReadOnly = false;
+                    label2.Visible = false;
+                    label1.Visible = true;
+                    comboBox.Visible = true;
                 }
+                
             }
         }
 

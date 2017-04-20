@@ -47,10 +47,8 @@ namespace Billing_View
         private void buttonOK_Click(object sender, EventArgs e)
         {
             try
-            {
-
+            {  
                 _employee = employeeControl.Employee;
-
                 this.DialogResult = DialogResult.OK;
                 Close();
             }
