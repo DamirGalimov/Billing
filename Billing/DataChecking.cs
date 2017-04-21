@@ -26,7 +26,7 @@ namespace Billing
                 {
                     if (val[i] != '-')
                     {
-                        throw new ArgumentException("Имя или фамилия содержит не буквенные символы");
+                        throw new ArgumentException("Name or surname contains non-alphabetic characters.");
                     }
                 }
             }

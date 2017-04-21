@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBoxEmployees = new System.Windows.Forms.GroupBox();
+            this.employeeControl1 = new Billing_View.EmployeeControl();
             this.billingGridView = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,7 +63,6 @@
             this.comboBoxSearch = new System.Windows.Forms.ComboBox();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.buttonSearch = new System.Windows.Forms.Button();
-            this.employeeControl1 = new Billing_View.EmployeeControl();
             this.groupBoxEmployees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.billingGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iEmployeeBindingSource)).BeginInit();
@@ -83,6 +83,15 @@
             this.groupBoxEmployees.TabIndex = 1;
             this.groupBoxEmployees.TabStop = false;
             this.groupBoxEmployees.Text = "Employees";
+            // 
+            // employeeControl1
+            // 
+            this.employeeControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.employeeControl1.Employee = null;
+            this.employeeControl1.Location = new System.Drawing.Point(475, 19);
+            this.employeeControl1.Name = "employeeControl1";
+            this.employeeControl1.Size = new System.Drawing.Size(261, 200);
+            this.employeeControl1.TabIndex = 1;
             // 
             // billingGridView
             // 
@@ -375,14 +384,6 @@
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
-            // employeeControl1
-            // 
-            this.employeeControl1.Location = new System.Drawing.Point(475, 19);
-            this.employeeControl1.Name = "employeeControl1";
-            //this.employeeControl1.ReadOnly = false;
-            this.employeeControl1.Size = new System.Drawing.Size(261, 200);
-            this.employeeControl1.TabIndex = 1;
             // 
             // MainForm
             // 
