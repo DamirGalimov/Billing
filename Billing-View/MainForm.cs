@@ -29,11 +29,12 @@ namespace Billing_View
             InitializeComponent();
             EnableMainForm(false);
             iEmployeeBindingSource.DataSource = Employees = new List<IEmployee>();
+            employeeControl1.ReadOnly = true;
 
 #if !DEBUG
-            OpenTestButton.Visible = false;
-            AutoCreatebutton.Visible = false;
-            SaveTestButton.Visible = false;
+            buttonSaveTest.Visible = false;
+            buttonOpenTest.Visible = false;
+            buttonAutoCreate.Visible = false;
 #endif
         }
 
@@ -227,9 +228,7 @@ namespace Billing_View
                 {
                     CreateSaveForm(Employees);
                 }
-                if (dialogResult == DialogResult.No)
-                {
-                }
+                
                 if (dialogResult == DialogResult.Cancel)
                 {
                     e.Cancel = true;
@@ -435,7 +434,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void billingGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            employeeControl1.ReadOnly = true;
+            
             employeeControl1.Employee = (IEmployee)iEmployeeBindingSource.Current;
         }
     }
