@@ -30,7 +30,7 @@ namespace Billing_View
             EnableMainForm(false);
             iEmployeeBindingSource.DataSource = Employees = new List<IEmployee>();
             employeeControl1.ReadOnly = true;
-
+            
 #if !DEBUG
             buttonSaveTest.Visible = false;
             buttonOpenTest.Visible = false;

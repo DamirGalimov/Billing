@@ -34,14 +34,12 @@ namespace Billing_View
         /// <returns></returns>
         public static List<IEmployee> Deserialize(string fileName)
         {
-            
                 using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
                 {
                     {
                         List<IEmployee> file = (List<IEmployee>) formatter.Deserialize(fs);
                         return file;
                     }
-                    
                 }
         }
     }
