@@ -81,6 +81,7 @@
     <Compile Include="SalaryPayEmployeeControl.Designer.cs">
       <DependentUpon>SalaryPayEmployeeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SerializeElement.cs" />
     <Compile Include="Serializer.cs" />
     <EmbeddedResource Include="EmployeeControl.resx">
       <DependentUpon>EmployeeControl.cs</DependentUpon>

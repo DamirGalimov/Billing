@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Runtime.Serialization.Formatters.Binary;
-using Billing;
-using System.IO;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Runtime.Serialization;
-
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace Billing_View
-
 {
     public static class Serializer
     {
@@ -17,13 +16,14 @@ namespace Billing_View
         /// <summary>
         /// Сериализация
         /// </summary>
-        /// <param name="fileName"></param>
         /// <param name="file"></param>
-        public static void Serialize(string fileName, List<IEmployee> file)
+        /// <param name="fileName"></param>
+        public static void Serialize(BillingProject file, string fileName)
         {
             using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, file);
+                file.Filename = fileName;
             }
         }
 
@@ -32,15 +32,16 @@ namespace Billing_View
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static List<IEmployee> Deserialize(string fileName)
+        public static BillingProject Deserialize(string fileName)
         {
-                using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
+            {
                 {
-                    {
-                        List<IEmployee> file = (List<IEmployee>) formatter.Deserialize(fs);
-                        return file;
-                    }
+                    BillingProject file = (BillingProject)formatter.Deserialize(fs);
+                    file.Filename = fileName;
+                    return file;
                 }
+            }
         }
     }
 }

@@ -17,9 +17,10 @@ namespace Billing_View
 {
     public partial class MainForm : Form
     {
-        private List<IEmployee> Employees;
+        private List<IEmployee> _employees;
         private bool _change = false;
         private string _fileName;
+        private BillingProject _billingProject;
         
         /// <summary>
         /// Конструктор
@@ -28,9 +29,12 @@ namespace Billing_View
         {
             InitializeComponent();
             EnableMainForm(false);
-            iEmployeeBindingSource.DataSource = Employees = new List<IEmployee>();
+            iEmployeeBindingSource.DataSource = _employees = new List<IEmployee>();
             employeeControl1.ReadOnly = true;
-            
+            _billingProject = new BillingProject();
+            _billingProject.Employees = _employees;
+            _billingProject.Filename = string.Empty;
+            buttonOpenTest.Enabled = true;
 #if !DEBUG
             buttonSaveTest.Visible = false;
             buttonOpenTest.Visible = false;
@@ -53,7 +57,7 @@ namespace Billing_View
             buttonSearch.Enabled = var;
             buttonReturnList.Enabled = var;
             buttonAutoCreate.Enabled = var;
-            buttonOpenTest.Enabled = var;
+            
             buttonSaveTest.Enabled = var;
             addEmployeeToolStripMenuItem.Enabled = var;
             removeEmployeeToolStripMenuItem.Enabled = var;
@@ -82,24 +86,6 @@ namespace Billing_View
                 }
                 _change = false;
             }
-        }
-
-        /// <summary>
-        /// Метод для создания формы с сохранением
-        /// </summary>
-        /// <param name="empl"></param>
-        private void CreateSaveForm(List<IEmployee> empl)
-        {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "txt files (*.dat)|*.dat";
-            dialog.RestoreDirectory = true;
-            if (!(dialog.FileName == null || dialog.ShowDialog() == DialogResult.Cancel))
-            {
-                Serializer.Serialize(dialog.FileName, empl);
-                _fileName = dialog.FileName;
-                EnableMainForm(true);
-            }
-            IsDataChange(false);
         }
 
         /// <summary>
@@ -144,8 +130,10 @@ namespace Billing_View
         /// <param name="e"></param>
         private void OpenTestButton_Click(object sender, EventArgs e)
         {
-            iEmployeeBindingSource.DataSource = Serializer.Deserialize("test2.dat");
-
+            _billingProject = SerializeElement.OpenDeserialize();
+            iEmployeeBindingSource.DataSource = _employees = _billingProject.Employees;
+            _fileName = _billingProject.Filename;
+            EnableMainForm(true);
         }
 
         /// <summary>
@@ -167,7 +155,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void SaveTestButton_Click(object sender, EventArgs e)
         {
-            Serializer.Serialize("testD.dat", Employees);
+            //Serializer.SaveSerialize("testD.dat", Employees);
         }
 
         /// <summary>
@@ -177,19 +165,11 @@ namespace Billing_View
         /// <param name="e"></param>
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "txt files (*.dat)|*.dat";
-            if (!(dialog.FileName == null || dialog.ShowDialog() == DialogResult.Cancel))
+            _billingProject = SerializeElement.OpenDeserialize();
+            if (_billingProject != null)
             {
-                try
-                {
-                    iEmployeeBindingSource.DataSource = Employees = Serializer.Deserialize(dialog.FileName);
-                }
-                catch (SerializationException)
-                {
-                    MessageBox.Show("Error. Empty file");
-                }
-                _fileName = dialog.FileName;
+                iEmployeeBindingSource.DataSource = _employees = _billingProject.Employees;
+                _fileName = _billingProject.Filename;
                 EnableMainForm(true);
                 IsDataChange(false);
                 _change = false;
@@ -205,7 +185,12 @@ namespace Billing_View
         {
             if (iEmployeeBindingSource.Count != 0)
             {
-                CreateSaveForm(Employees);
+               bool a = SerializeElement.SaveSerialize(_billingProject);
+                if (a)
+                {
+                    _fileName = _billingProject.Filename;
+                }
+                IsDataChange(a);
             }
             else
             {
@@ -226,7 +211,7 @@ namespace Billing_View
                     MessageBoxIcon.Asterisk);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    CreateSaveForm(Employees);
+                    SerializeElement.SaveSerialize(_billingProject);
                 }
                 
                 if (dialogResult == DialogResult.Cancel)
@@ -283,7 +268,7 @@ namespace Billing_View
                     MessageBoxIcon.Asterisk);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    CreateSaveForm(Employees);
+                    SerializeElement.SaveSerialize(_billingProject);
                     iEmployeeBindingSource.Clear();
                 }
                 if (dialogResult == DialogResult.No)
@@ -335,7 +320,7 @@ namespace Billing_View
                     MessageBoxIcon.Asterisk);
                 if (dialogResult == DialogResult.OK)
                 {
-                    CreateSaveForm(Employees);
+                    SerializeElement.SaveSerialize(_billingProject);
                 }
             }
             Close();
@@ -354,14 +339,14 @@ namespace Billing_View
             {
                 case "Name":
                     {
-                        iEmployeeBindingSource.DataSource = Employees.FindAll(delegate (IEmployee empl)
+                        iEmployeeBindingSource.DataSource = _employees.FindAll(delegate (IEmployee empl)
                         {
                             return empl.Name == text;
                         });
                         break;
                     }
                 case "Surname":
-                    iEmployeeBindingSource.DataSource = Employees.FindAll(delegate (IEmployee empl)
+                    iEmployeeBindingSource.DataSource = _employees.FindAll(delegate (IEmployee empl)
                     {
                         return empl.Surname == text;
                     });
@@ -369,7 +354,7 @@ namespace Billing_View
                 case "Age":
                     {
                         int age = Convert.ToInt32(textBoxSearch.Text);
-                        iEmployeeBindingSource.DataSource = Employees.FindAll(delegate (IEmployee empl)
+                        iEmployeeBindingSource.DataSource = _employees.FindAll(delegate (IEmployee empl)
                         {
                             return empl.Age == age;
                         });
@@ -377,7 +362,7 @@ namespace Billing_View
                     }
                 case "Payment type":
                     {
-                        iEmployeeBindingSource.DataSource = Employees.FindAll(delegate (IEmployee empl)
+                        iEmployeeBindingSource.DataSource = _employees.FindAll(delegate (IEmployee empl)
                         {
                             PaymentType pt = ConvertPaymentType.ToPaymentType(text);
                             return empl.PaymentType == pt;
@@ -394,7 +379,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void buttonReturnList_Click(object sender, EventArgs e)
         {
-            iEmployeeBindingSource.DataSource = Employees;
+            iEmployeeBindingSource.DataSource = _employees;
         }
 
         /// <summary>
@@ -405,7 +390,9 @@ namespace Billing_View
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            CreateSaveForm(Employees);
+            SerializeElement.SaveSerialize(_billingProject);
+            _fileName = _billingProject.Filename;
+            EnableMainForm(true);
             IsDataChange(false);
         }
 
@@ -418,7 +405,7 @@ namespace Billing_View
         {
             if (iEmployeeBindingSource.Count != 0)
             {
-                Serializer.Serialize(_fileName, Employees);
+                Serializer.Serialize(_billingProject, _fileName);
                 IsDataChange(false);
             }
             else

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 using Billing;
 
 namespace Billing_View
 {
     [Serializable]
-    class BillingProject
+    public class BillingProject
     {
-        private List<IEmployee> Employees { get; set; }
+        public string Filename { get; set; }
+        public List<IEmployee> Employees { get; set; }
     }
 }
