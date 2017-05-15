@@ -29,7 +29,7 @@ DefaultDirName={pf}\{#Name}
 DefaultGroupName={#Name}
 
 ; Каталог, куда будет записан собранный setup и имя исполняемого файла
-OutputDir=E:\work\test-setup
+OutputDir=C:\Users\akun9\Documents\Visual Studio 2017\Projects\Billing\Установщик
 OutputBaseFileName=test-setup
 
 ; Файл иконки

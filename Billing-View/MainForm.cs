@@ -21,12 +21,14 @@ namespace Billing_View
         private bool _change = false;
         private string _fileName;
         private BillingProject _billingProject;
+        public string[] args;
         
         /// <summary>
         /// Конструктор
         /// </summary>
-        public MainForm()
+        public MainForm(string[] args)
         {
+            
             InitializeComponent();
             EnableMainForm(false);
             iEmployeeBindingSource.DataSource = _employees = new List<IEmployee>();
@@ -40,6 +42,23 @@ namespace Billing_View
             buttonOpenTest.Visible = false;
             buttonAutoCreate.Visible = false;
 #endif
+            if (args.Length > 0)
+            {
+                try
+                {
+                    _billingProject = Serializer.Deserialize(args[0]);
+                }
+                catch (ArgumentException)
+                {
+                    MessageBox.Show("Invalid file extension!");
+                }
+                iEmployeeBindingSource.DataSource = _employees = _billingProject.Employees;
+                _fileName = _billingProject.Filename;
+                EnableMainForm(true);
+                IsDataChange(false);
+                _change = false;
+            }
+            
         }
 
         /// <summary>
