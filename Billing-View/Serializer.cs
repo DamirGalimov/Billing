@@ -9,8 +9,10 @@ using System.IO;
 
 namespace Billing_View
 {
+    //TODO: комментарии?
     public static class Serializer
     {
+        //TODO: комментарии?
         static BinaryFormatter formatter = new BinaryFormatter();
 
         /// <summary>

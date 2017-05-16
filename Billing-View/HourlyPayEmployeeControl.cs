@@ -12,6 +12,9 @@ using Billing;
 
 namespace Billing_View
 {
+    //TODO: стоит переместить контролы в подпапку
+    //TODO: в текстбоксы с часами и стоимостью можно вводить символы. 
+    // Сделать обработку таким образом, чтобы вводились только цифры
     public partial class HourlyPayEmployeeControl : UserControl
     {
         public HourlyPayEmployeeControl()
@@ -41,6 +44,7 @@ namespace Billing_View
             }
             set
             {
+                //TODO: условие лучше инвертировать
                 if (value != null)
                 {
                     var empl = value;
@@ -60,6 +64,7 @@ namespace Billing_View
         {
             set
             {
+                //TODO: избавиться от дублирования
                 if (value)
                 {
                     textBoxName.ReadOnly = true;

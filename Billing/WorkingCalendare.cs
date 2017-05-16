@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Billing
 {
+    //TODO: комментарии?
     public static class WorkingCalendare
     {
         public static List<int> WorkingDaysInMonth = new List<int>

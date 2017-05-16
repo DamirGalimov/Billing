@@ -12,6 +12,7 @@ namespace Billing
     /// </summary>
     public interface IEmployee
     {
+        //TODO: нужна одна пустая строка между членами класса. Проверить везде.
         /// <summary>
         /// Имя работника
         /// </summary>
