@@ -17,7 +17,6 @@ namespace Billing_View
 {
     public partial class MainForm : Form
     {
-        private List<IEmployee> _employees;
         private bool _change = false;
         private string _fileName;
         private BillingProject _billingProject;
@@ -30,10 +29,8 @@ namespace Billing_View
         {
             InitializeComponent();
             EnableMainForm(false);
-            iEmployeeBindingSource.DataSource = _employees = new List<IEmployee>();
             employeeControl1.ReadOnly = true;
             _billingProject = new BillingProject();
-            _billingProject.Employees = _employees;
             _billingProject.Filename = string.Empty;
             buttonOpenTest.Enabled = true;
 #if !DEBUG
@@ -51,7 +48,7 @@ namespace Billing_View
                 {
                     MessageBox.Show("Invalid file extension!");
                 }
-                iEmployeeBindingSource.DataSource = _employees = _billingProject.Employees;
+                iEmployeeBindingSource.DataSource = _billingProject.Employees;
                 _fileName = _billingProject.Filename;
                 EnableMainForm(true);
                 IsDataChange(false);
@@ -149,7 +146,7 @@ namespace Billing_View
         private void OpenTestButton_Click(object sender, EventArgs e)
         {
             _billingProject = SerializeElement.OpenDeserialize();
-            iEmployeeBindingSource.DataSource = _employees = _billingProject.Employees;
+            iEmployeeBindingSource.DataSource = _billingProject.Employees;
             _fileName = _billingProject.Filename;
             EnableMainForm(true);
         }
@@ -186,7 +183,7 @@ namespace Billing_View
             _billingProject = SerializeElement.OpenDeserialize();
             if (_billingProject != null)
             {
-                iEmployeeBindingSource.DataSource = _employees = _billingProject.Employees;
+                iEmployeeBindingSource.DataSource = _billingProject.Employees;
                 _fileName = _billingProject.Filename;
                 EnableMainForm(true);
                 IsDataChange(false);
@@ -357,14 +354,14 @@ namespace Billing_View
             {
                 case "Name":
                     {
-                        iEmployeeBindingSource.DataSource = _employees.FindAll(delegate (IEmployee empl)
+                        iEmployeeBindingSource.DataSource = _billingProject.Employees.FindAll(delegate (IEmployee empl)
                         {
                             return empl.Name == text;
                         });
                         break;
                     }
                 case "Surname":
-                    iEmployeeBindingSource.DataSource = _employees.FindAll(delegate (IEmployee empl)
+                    iEmployeeBindingSource.DataSource = _billingProject.Employees.FindAll(delegate (IEmployee empl)
                     {
                         return empl.Surname == text;
                     });
@@ -372,7 +369,7 @@ namespace Billing_View
                 case "Age":
                     {
                         int age = Convert.ToInt32(textBoxSearch.Text);
-                        iEmployeeBindingSource.DataSource = _employees.FindAll(delegate (IEmployee empl)
+                        iEmployeeBindingSource.DataSource = _billingProject.Employees.FindAll(delegate (IEmployee empl)
                         {
                             return empl.Age == age;
                         });
@@ -380,7 +377,7 @@ namespace Billing_View
                     }
                 case "Payment type":
                     {
-                        iEmployeeBindingSource.DataSource = _employees.FindAll(delegate (IEmployee empl)
+                        iEmployeeBindingSource.DataSource = _billingProject.Employees.FindAll(delegate (IEmployee empl)
                         {
                             PaymentType pt = ConvertPaymentType.ToPaymentType(text);
                             return empl.PaymentType == pt;
@@ -397,7 +394,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void buttonReturnList_Click(object sender, EventArgs e)
         {
-            iEmployeeBindingSource.DataSource = _employees;
+            iEmployeeBindingSource.DataSource = _billingProject.Employees;
         }
 
         /// <summary>
