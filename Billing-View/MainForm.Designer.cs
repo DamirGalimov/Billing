@@ -88,7 +88,7 @@
             // 
             this.employeeControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.employeeControl1.Employee = null;
-            this.employeeControl1.Location = new System.Drawing.Point(475, 19);
+            this.employeeControl1.Location = new System.Drawing.Point(471, 19);
             this.employeeControl1.Name = "employeeControl1";
             this.employeeControl1.Size = new System.Drawing.Size(261, 200);
             this.employeeControl1.TabIndex = 1;

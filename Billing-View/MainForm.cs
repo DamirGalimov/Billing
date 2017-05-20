@@ -21,14 +21,13 @@ namespace Billing_View
         private bool _change = false;
         private string _fileName;
         private BillingProject _billingProject;
-        public string[] args;
+        private string[] args;
         
         /// <summary>
         /// Конструктор
         /// </summary>
         public MainForm(string[] args)
         {
-            
             InitializeComponent();
             EnableMainForm(false);
             iEmployeeBindingSource.DataSource = _employees = new List<IEmployee>();
