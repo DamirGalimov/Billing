@@ -9,7 +9,7 @@ namespace Billing
     /// Работник получающий ЗП по окладу
     /// </summary>
     [Serializable]
-    public class SalaryPayEmployee: EmployeeBase, IEmployee
+    public class SalaryPayEmployee: EmployeeBase
     {
         /// <summary>
         /// ставка НДФЛ в процентах

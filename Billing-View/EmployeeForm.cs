@@ -74,5 +74,7 @@ namespace Billing_View
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        
     }
 }

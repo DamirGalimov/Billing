@@ -11,7 +11,7 @@ namespace Billing
     /// Работник получающий зарплату по почасовой оплате
     /// </summary>
     [Serializable]
-    public class HourlyPayEmployee : EmployeeBase, IEmployee
+    public class HourlyPayEmployee : EmployeeBase
     {
         /// <summary>
         /// ставка НДЛФ в процентах
