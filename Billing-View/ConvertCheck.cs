@@ -3,8 +3,12 @@
 
 namespace Billing_View
 {
+    //TODO: комментарии?
+    //TODO: исправить название класса. Check - это глагол, а не существительное
+    //TODO: Если класс не связан с интерфейсами, то логичнее его переместить в проект Billing. Там уже есть DataCheking и PaymentTypeConverter, будет еще один класс-чекер.
     public static class ConvertCheck
     {
+        //TODO: комментарии?
         /// <summary>
         /// 
         /// </summary>
@@ -13,6 +17,7 @@ namespace Billing_View
         /// <returns></returns>
         public static int ConvertToInt(string text, string fileName)
         {
+            //TODO: а локальная переменная нужна?
             int view;
             try
             {
@@ -25,6 +30,7 @@ namespace Billing_View
             return view;
         }
 
+        //TODO: комментарии?
         /// <summary>
         /// 
         /// </summary>
@@ -33,6 +39,7 @@ namespace Billing_View
         /// <returns></returns>
         public static double ConvertToDouble(string text, string fileName)
         {
+            //TODO: а локальная переменная нужна?
             double view;
             try
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//TODO: 1) Статик писать не надо. 2) если это статический класс, то лучше его прописывать прямо в точке вызова.
 using static Billing.DataChecking;
 
 namespace Billing

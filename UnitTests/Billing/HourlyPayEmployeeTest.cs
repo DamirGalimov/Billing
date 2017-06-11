@@ -5,6 +5,7 @@ using System;
 namespace UnitTests.Billing
 
 {
+    //TODO: не протестировано самое главное в классе - правильность расчета зарплаты.
     /// <summary>
     /// Набор тестов для класса HourlyPayEmployee
     /// </summary>

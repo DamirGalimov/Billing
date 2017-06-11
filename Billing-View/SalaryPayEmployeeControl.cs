@@ -11,6 +11,9 @@ using Billing;
 
 namespace Billing_View
 {
+    //TODO: все контролы стоит переместить в подпапку.
+    //TODO: в текстбоксы с часами и стоимостью можно вводить символы. 
+    // Сделать обработку таким образом, чтобы вводились только цифры
     public partial class SalaryPayEmployeeControl : UserControl
     {
         public SalaryPayEmployeeControl()
@@ -40,8 +43,10 @@ namespace Billing_View
             }
             set
             {
+                //TODO: условие лучше инвертировать
                 if (value != null)
                 {
+                    //TODO: неправильное имя локальной переменной
                     var empl = value;
                     textBoxName.Text = empl.Name;
                     textBoxSurname.Text = empl.Surname;
@@ -61,6 +66,7 @@ namespace Billing_View
         {
             set
             {
+                //TODO: посмотри на ветвление внимательно. Разве нельзя избавиться от дублирования?
                 if (value)
                 {
                     textBoxName.ReadOnly = true;
@@ -82,6 +88,7 @@ namespace Billing_View
             }
         }
 
+        //TODO: переименовать метод. Метод назван как класс - от существительного
         /// <summary>
         /// Метод для выведения подсказок
         /// </summary>

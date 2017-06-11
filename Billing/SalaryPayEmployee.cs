@@ -1,8 +1,10 @@
 ﻿using System;
+//TODO: аналогичное замечание в базовом классе.
 using static Billing.DataChecking;
 
 namespace Billing
 {
+    //TODO: базовый класс реализует интерфейс. Здесь интерфейс указывать не надо.
     /// <summary>
     /// Работник получающий ЗП по окладу
     /// </summary>

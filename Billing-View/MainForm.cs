@@ -15,9 +15,11 @@ using System.Runtime.Serialization;
 
 namespace Billing_View
 {
+    //TODO: на всю форму только одна горячая клавиша Ctrl+S. А другие?
     public partial class MainForm : Form
     {
         private bool _change = false;
+        //TODO: если имя файла теперь хранится в billingProject, то это поле не нужно.
         private string _fileName;
         private BillingProject _billingProject;
         private string[] args;
@@ -52,11 +54,14 @@ namespace Billing_View
                 _fileName = _billingProject.Filename;
                 EnableMainForm(true);
                 IsDataChange(false);
+                //TODO: здесь и далее, переменная _change должна менять своё значение в IsDataChange(),
+                // а не после вызова функции
                 _change = false;
             }
             
         }
 
+        //TODO: var - ключевое слово. Плохое имя для переменной
         /// <summary>
         /// Анктивация кнопок
         /// </summary>
@@ -103,6 +108,7 @@ namespace Billing_View
             }
         }
 
+        //TODO: именование кнопки (и обработчика соответственно) неправильное
         /// <summary>
         /// Добавление объекта
         /// </summary>
@@ -119,6 +125,7 @@ namespace Billing_View
             }
         }
 
+        //TODO: именование кнопки (и обработчика соответственно) неправильное
         /// <summary>
         /// Удаление объектов
         /// </summary>
@@ -170,6 +177,7 @@ namespace Billing_View
         /// <param name="e"></param>
         private void SaveTestButton_Click(object sender, EventArgs e)
         {
+            //TODO: отличный метод. Если не нужен - удаляй
             //Serializer.SaveSerialize("testD.dat", Employees);
         }
 

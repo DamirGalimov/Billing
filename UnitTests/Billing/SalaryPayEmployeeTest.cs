@@ -4,6 +4,8 @@ using Billing;
 
 namespace UnitTests.Billing
 {
+
+    //TODO: не протестирована правильность расчета зарплаты
     /// <summary>
     /// Набор тестов для SalaryPayEmployee
     /// </summary>

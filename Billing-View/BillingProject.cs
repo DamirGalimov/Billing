@@ -8,10 +8,15 @@ using Billing;
 
 namespace Billing_View
 {
+    //TODO: комментарии?
     [Serializable]
     public class BillingProject
     {
+        //TODO: комментарии?
         public string Filename { get; set; }
+
+        //TODO: комментарии?
+        //TODO: лучше создавать экземпляр списка по умолчанию
         public List<IEmployee> Employees { get; set; }
     }
 }
