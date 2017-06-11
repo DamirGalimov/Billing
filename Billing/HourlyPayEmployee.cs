@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
+//TODO: аналогично замечанию в базовом классе
 using static Billing.DataChecking;
 
 
 namespace Billing
 {
+    //TODO: если базовый класс реализует интерфейс, то указывать его в наследнике уже не надо
     /// <summary>
     /// Работник получающий зарплату по почасовой оплате
     /// </summary>

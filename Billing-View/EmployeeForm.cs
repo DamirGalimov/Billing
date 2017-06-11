@@ -11,11 +11,13 @@ using Billing;
 
 namespace Billing_View
 {
+    //TODO: кнопки cancel и ok на форме переставить местами, как это принято
     public partial class EmployeeForm : Form
     {
         public EmployeeForm()
         {
             InitializeComponent();
+            //TODO: лучше задавать через дизайнер
             employeeControl.ReadOnly = false;
         }
 
@@ -54,8 +56,9 @@ namespace Billing_View
             }
 
             catch (Exception de)
-            {
+            {//TODO: пустую строку убрать
 
+                //TODO: сообщение по-русски, другие по-английски. Сделать единообразно.
                 MessageBox.Show(de.Message, "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
