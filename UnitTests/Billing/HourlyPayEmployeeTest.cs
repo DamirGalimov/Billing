@@ -16,8 +16,6 @@ namespace UnitTests.Billing
         [TestCase(101, TestName = "Тестирование HourlyPayEmployee.HourCost при присваивании позитивного значения 101")]
         [TestCase(99, ExpectedException = typeof(ArgumentException),
             TestName = "Тестирование HourlyPayEmployee.HourCost при присваивании негативного значения 99.")]
-        [TestCase(double.MaxValue, ExpectedException = typeof(ArgumentException),
-            TestName = "Тестирование HourlyPayEmployee.HourCost при присваивании негативного значения MaxValue.")]
         public void HourCostTest(double hourCost)
         {
             var hpe = new HourlyPayEmployee();

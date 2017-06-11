@@ -18,7 +18,7 @@ namespace Billing_View
     public partial class MainForm : Form
     {
         private bool _change = false;
-        private string _fileName;
+        //private string _fileName;
         private BillingProject _billingProject;
         private string[] args;
         
@@ -49,7 +49,7 @@ namespace Billing_View
                     MessageBox.Show("Invalid file extension!");
                 }
                 iEmployeeBindingSource.DataSource = _billingProject.Employees;
-                _fileName = _billingProject.Filename;
+                //_fileName = _billingProject.Filename;
                 EnableMainForm(true);
                 IsDataChange(false);
                 _change = false;
@@ -86,14 +86,14 @@ namespace Billing_View
         {
             if (check)
             {
-                this.Text = _fileName.Substring(_fileName.LastIndexOf("\\") + 1) + "* - KLaboratory";
+                this.Text = _billingProject.Filename.Substring(_billingProject.Filename.LastIndexOf("\\") + 1) + "* - KLaboratory";
                 _change = true;
             }
             else
             {
-                if (_fileName != null)
+                if (_billingProject.Filename != null)
                 {
-                    this.Text = _fileName.Substring(_fileName.LastIndexOf("\\") + 1) + " - KLabaratory";
+                    this.Text = _billingProject.Filename.Substring(_billingProject.Filename.LastIndexOf("\\") + 1) + " - KLabaratory";
                 }
                 else
                 {
@@ -147,7 +147,7 @@ namespace Billing_View
         {
             _billingProject = SerializeElement.OpenDeserialize();
             iEmployeeBindingSource.DataSource = _billingProject.Employees;
-            _fileName = _billingProject.Filename;
+            //_fileName = _billingProject.Filename;
             EnableMainForm(true);
         }
 
@@ -184,7 +184,7 @@ namespace Billing_View
             if (_billingProject != null)
             {
                 iEmployeeBindingSource.DataSource = _billingProject.Employees;
-                _fileName = _billingProject.Filename;
+                //_fileName = _billingProject.Filename;
                 EnableMainForm(true);
                 IsDataChange(false);
                 _change = false;
@@ -198,12 +198,13 @@ namespace Billing_View
         /// <param name="e"></param>
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Место с ошибкой
             if (iEmployeeBindingSource.Count != 0)
             {
                bool a = SerializeElement.SaveSerialize(_billingProject);
                 if (a)
                 {
-                    _fileName = _billingProject.Filename;
+                    //_fileName = _billingProject.Filename;
                 }
                 IsDataChange(a);
             }
@@ -290,7 +291,7 @@ namespace Billing_View
                 {
                     iEmployeeBindingSource.Clear();
                 }
-                _fileName = null;
+                _billingProject.Filename = null;
                 EnableMainForm(false);
                 IsDataChange(false);
             }
@@ -406,7 +407,7 @@ namespace Billing_View
         {
 
             SerializeElement.SaveSerialize(_billingProject);
-            _fileName = _billingProject.Filename;
+            //_fileName = _billingProject.Filename;
             EnableMainForm(true);
             IsDataChange(false);
         }
@@ -420,7 +421,7 @@ namespace Billing_View
         {
             if (iEmployeeBindingSource.Count != 0)
             {
-                Serializer.Serialize(_billingProject, _fileName);
+                Serializer.Serialize(_billingProject, _billingProject.Filename);
                 IsDataChange(false);
             }
             else
