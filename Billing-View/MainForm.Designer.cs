@@ -189,7 +189,6 @@
             this.buttonSaveTest.TabIndex = 4;
             this.buttonSaveTest.Text = "Save Test";
             this.buttonSaveTest.UseVisualStyleBackColor = true;
-            this.buttonSaveTest.Click += new System.EventHandler(this.SaveTestButton_Click);
             // 
             // buttonRemoveEmployee
             // 

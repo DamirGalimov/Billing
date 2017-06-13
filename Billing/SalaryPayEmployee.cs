@@ -122,9 +122,8 @@ namespace Billing
         /// <returns>ЗП в рублях расчитанная по формуле с учетом НДЛФ, вычетов и ставки</returns>
         public override double SalariesEnrollment()
         {
-            return Math.Round((((_salary) - ((_salary - 400) * IncomeTax) / 100) 
-                * _daysWorked  * _rate) / 
-                WorkingCalendare.WorkingDaysInMonth[(DateTime.Now.Month-1)]); 
+            return Math.Round((_salary - (_salary - 400) * IncomeTax / 100) * _daysWorked  * _rate / 
+                WorkingCalendare.WorkingDaysInMonth[DateTime.Now.Month-1]); 
         }
     }
 }

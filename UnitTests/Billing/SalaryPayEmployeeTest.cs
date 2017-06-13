@@ -4,8 +4,6 @@ using Billing;
 
 namespace UnitTests.Billing
 {
-
-    //TODO: не протестирована правильность расчета зарплаты
     /// <summary>
     /// Набор тестов для SalaryPayEmployee
     /// </summary>
@@ -58,6 +56,19 @@ namespace UnitTests.Billing
         {
             var spe = new SalaryPayEmployee();
             spe.Rate = rate;
+        }
+
+        [Test]
+        public void SalariesEnrollmentTest()
+        {
+            var spe = new SalaryPayEmployee();
+            spe.Rate = 1;
+            spe.DaysWorked = 20;
+            spe.Salary = 20000;
+            double actual = spe.SalariesEnrollment();
+            double result = 16620;
+
+            Assert.AreEqual(result, actual);
         }
     }
 }

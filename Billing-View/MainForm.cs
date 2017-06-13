@@ -18,7 +18,6 @@ namespace Billing_View
     public partial class MainForm : Form
     {
         private bool _change = false;
-        //private string _fileName;
         private BillingProject _billingProject;
         private string[] args;
         
@@ -60,23 +59,23 @@ namespace Billing_View
         /// <summary>
         /// Анктивация кнопок
         /// </summary>
-        /// <param name="var"></param>
-        private void EnableMainForm(bool var)
+        /// <param name="flag"></param>
+        private void EnableMainForm(bool flag)
         {
-            groupBoxEmployees.Enabled = var;
-            groupBoxSearch.Enabled = var;
-            billingGridView.Enabled = var;
-            groupBoxEmployees.Enabled = var;
-            buttonAddEmpl.Enabled = var;
-            buttonRemoveEmployee.Enabled = var;
-            buttonSearch.Enabled = var;
-            buttonReturnList.Enabled = var;
-            buttonAutoCreate.Enabled = var;
+            groupBoxEmployees.Enabled = flag;
+            groupBoxSearch.Enabled = flag;
+            billingGridView.Enabled = flag;
+            groupBoxEmployees.Enabled = flag;
+            buttonAddEmpl.Enabled = flag;
+            buttonRemoveEmployee.Enabled = flag;
+            buttonSearch.Enabled = flag;
+            buttonReturnList.Enabled = flag;
+            buttonAutoCreate.Enabled = flag;
             
-            buttonSaveTest.Enabled = var;
-            addEmployeeToolStripMenuItem.Enabled = var;
-            removeEmployeeToolStripMenuItem.Enabled = var;
-            modifyEmployeeToolStripMenuItem.Enabled = var;
+            buttonSaveTest.Enabled = flag;
+            addEmployeeToolStripMenuItem.Enabled = flag;
+            removeEmployeeToolStripMenuItem.Enabled = flag;
+            modifyEmployeeToolStripMenuItem.Enabled = flag;
         }
 
         /// <summary>
@@ -115,7 +114,6 @@ namespace Billing_View
             {
                 iEmployeeBindingSource.Add(addForm.Employee);
                 IsDataChange(true);
-                _change = true;
             }
         }
 
@@ -130,7 +128,6 @@ namespace Billing_View
             {
                 iEmployeeBindingSource.RemoveCurrent();
                 IsDataChange(true);
-                _change = true;
             }
             else
             {
@@ -147,7 +144,6 @@ namespace Billing_View
         {
             _billingProject = SerializeElement.OpenDeserialize();
             iEmployeeBindingSource.DataSource = _billingProject.Employees;
-            //_fileName = _billingProject.Filename;
             EnableMainForm(true);
         }
 
@@ -164,16 +160,6 @@ namespace Billing_View
         }
 
         /// <summary>
-        /// Кнопка для тестового сохранения
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SaveTestButton_Click(object sender, EventArgs e)
-        {
-            //Serializer.SaveSerialize("testD.dat", Employees);
-        }
-
-        /// <summary>
         /// Открытие
         /// </summary>
         /// <param name="sender"></param>
@@ -184,10 +170,8 @@ namespace Billing_View
             if (_billingProject != null)
             {
                 iEmployeeBindingSource.DataSource = _billingProject.Employees;
-                //_fileName = _billingProject.Filename;
                 EnableMainForm(true);
                 IsDataChange(false);
-                _change = false;
             }
         }
 
@@ -407,7 +391,6 @@ namespace Billing_View
         {
 
             SerializeElement.SaveSerialize(_billingProject);
-            //_fileName = _billingProject.Filename;
             EnableMainForm(true);
             IsDataChange(false);
         }
